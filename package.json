@@ -1,0 +1,19 @@
+{
+  "name": "manifest_generator",
+  "version": "0.0.1",
+  "description": "A Javascript/HTML IIIF-compiant manifest generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waltster/DigitalPiranesi.git"
+  },
+  "author": "Walter Pach (wpach@email.sc.edu)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/waltster/DigitalPiranesi/issues"
+  },
+  "homepage": "https://github.com/waltster/DigitalPiranesi#readme"
+}
