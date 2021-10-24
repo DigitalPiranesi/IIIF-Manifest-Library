@@ -3,6 +3,7 @@
 ## Installing
 Requirements:
 * [NodeJS](https://nodejs.org/en/)
+* Packages included via ```package.json``` (installed below).
 
 All dependencies are managed by NPM and can be installed with the following
 command:
