@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/waltster/DigitalPiranesi/issues"
   },
-  "homepage": "https://github.com/waltster/DigitalPiranesi#readme"
+  "homepage": "https://github.com/waltster/DigitalPiranesi#readme",
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
 }

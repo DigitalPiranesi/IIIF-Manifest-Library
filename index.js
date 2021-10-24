@@ -2,8 +2,8 @@
 //   1. Write a command-line too for creating test manifests
 //   2. Write a simple HTML interface for creating test manifests
 
-const context_manager = require('./contexts/manager');
-const arguments = require('./src/arguments');
+const context_manager = {} // TODO: require('./src/manager');
+const arguments = require('./arguments');
 
 const flag_list = [
   {names: ["-c", "--context"], description: "Change the IIIF version context. Usage: -c VERSION_NUMBER. Must be included within the 'contexts' directory.", method: arguments.handleContextArgument},
@@ -20,7 +20,9 @@ const flag_list = [
   // increases with each iteration, but also allows individual handlers to
   // increment/decrement the index as needed (for example, if the argument has
   // options/variables).
-  for(var i = 0; i < args.length; i++){
+  var i = 0;
+
+  for(i = 0; i < args.length; i++){
     var found_flag = false;
 
     // Rather than using a series of if statements or a switch, this just loops
@@ -45,4 +47,5 @@ const flag_list = [
       return;
     }
   }
+
 })();
