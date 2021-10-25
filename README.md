@@ -12,6 +12,7 @@ command:
 npm install
 ```
 
+<!--
 ## Running
 
 ### 1. (Optional) Select Context
@@ -27,8 +28,9 @@ optional.
 | ```-c, --context```     | Change the IIIF context for the manifest. ```VERSION_NUMBER``` must be installed in the ```contexts``` directory. |
 | ```-h, --help```        | Display command line options, flags, and arguments.                                                               |
 | ```-v, --version```     | Display version information.                                                                                      |
+-->
 
-## Contributing
+## Contributing/Developer Notes
 
 ### Notes on Libraries
 
