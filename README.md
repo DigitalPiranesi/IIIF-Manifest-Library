@@ -34,6 +34,10 @@ optional.
 
 ## Contributing/Developer Notes
 
+### Branches
+
+Right now, the master branch is closed to commits. Instead, push to the ```development``` branch which can be marged into ```master```. This avoids any issues with having to go back a few commits, etc. If more than two people are working on this project, let's make sure to change the whole contribution thing to pull requests and so on.
+
 ### Notes on Libraries
 
 This software uses [NodeJS](https://www.nodejs.org) and [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html), both of which are free and open-source. While other languages may be used, it is suggested to at least be familiar with vanilla Javascript and Typescript, as well as the NodeJS built-in libraries.
