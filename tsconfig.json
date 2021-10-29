@@ -1,6 +1,8 @@
 {
   "files": [
-    "src/*.ts"
+    "src/*.ts",
+    "src/types/*.ts",
+    "src/types/interfaces/*.ts"
   ],
   "compilerOptions": {
     "module": "commonjs",
@@ -11,6 +13,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "target": "es5"
+    "target": "es5",
+    "strictNullChecks": true,
   }
 }

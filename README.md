@@ -14,6 +14,15 @@ command:
 npm install
 ```
 
+## Building
+After installing the dependencies, simply run the following command to build the application.
+Building is managed by Gulp which runs all the necessary tasks. The resulting
+build can be found in the ```dist``` folder.
+
+```bash
+gulp
+```
+
 <!--
 ## Running
 
@@ -33,6 +42,8 @@ optional.
 -->
 
 ## Contributing/Developer Notes
+
+See weekly issue in [issues](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues) for the checklist of the week.
 
 ### Notes on Libraries
 
