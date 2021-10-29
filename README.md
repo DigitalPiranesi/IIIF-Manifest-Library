@@ -33,6 +33,14 @@ node dist/main.js
 ## Documentation
 Documentation is included as comments on each appropriate method and class declaration.
 
+### Useful Reading
+* [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+* [TypeScript type notation](https://www.tutorialsteacher.com/typescript/type-annotation)
+* [TypeScript classes](https://www.typescriptlang.org/docs/handbook/2/classes.html)
+  * [Abstract classes](https://www.tutorialsteacher.com/typescript/abstract-class)
+  * [Interfaces](https://www.tutorialsteacher.com/typescript/typescript-interface)
+* [TypeScript object types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+
 ## Contributing/Developer Notes
 See weekly issue in [issues](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues) for the checklist of the week.
 

@@ -2,6 +2,9 @@ import IJSONAble from "./interfaces/IJSONAble";
 import IItem from "./interfaces/IItem";
 
 export default class ItemList {
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+   */
   items: Map<string, IItem>;
 
   constructor(){

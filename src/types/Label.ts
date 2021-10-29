@@ -38,7 +38,11 @@ export default class Label implements ILabel {
    * Returns this label as a properly formatted "label" manifest object string
    * rather than a stringified version of this class.
    */
-  toJSONString(): string {
+  toJSONString(): string{
+    if(this.values.length <= 0){
+      return "";
+    }
+
     var obj: { [s: string]: string[] } = {};
     obj[this.languageCode] = this.values;
 

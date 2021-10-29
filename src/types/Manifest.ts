@@ -1,4 +1,4 @@
-var lib = require("@lib");
+var lib = require("../lib");
 
 import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
