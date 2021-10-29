@@ -13,4 +13,12 @@ function ASSERT(test?: any){
   }
 }
 
-export { ASSERT };
+function clone(obj: any): string{
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function softClone(obj: any): any{
+  return Object.assign({}, obj);
+}
+
+export { ASSERT, clone, softClone};

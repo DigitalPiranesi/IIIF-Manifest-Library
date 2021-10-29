@@ -7,7 +7,7 @@
     "start:gulp": "npm-run-all gulp start",
     "gulp": "gulp",
     "start": "node ./dist/main.js",
-    "test": "echo \"TODO: write tests.\" && exit 0"
+    "test": "node tests/output.js && exit $?"
   },
   "repository": {
     "type": "git",

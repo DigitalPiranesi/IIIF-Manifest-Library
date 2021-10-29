@@ -3,17 +3,14 @@ require('module-alias/register');
 
 const Lib = require("@lib");
 import Label from "./types/Label";
+import Manifest from "./types/Manifest";
+import Item from "./types/Item";
+import ItemCanvas from "./types/ItemCanvas";
 
-function hello(compiler: string){
-  console.log(`Hello from ${compiler}`);
-  var a: number = 1;
-  var b: number = 2;
+var label: Label = new Label("en", ["Tom and Jerry doing the whole like fighting thing."]);
+var manifest: Manifest = new Manifest(3, "https://piranesi-test.reclaim.hosting/walts-test-book/media/Manifest_TomJerryV2.json");
+var item: Item = new ItemCanvas("test-canvas", 10, 10);
 
-  //Lib.ASSERT(a == b);
-}
+manifest.addLabel(label);
 
-var label: Label = new Label("en", ["Tom and Jerry"]);
-
-console.log(label.toJSONString());
-
-hello("world!");
+console.log(manifest.toJSONString());

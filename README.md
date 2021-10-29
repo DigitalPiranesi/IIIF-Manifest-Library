@@ -31,7 +31,7 @@ node dist/main.js
 ```
 
 ## Documentation
-See [```docs```](./docs) directory for extensive documentation.
+Documentation is included as comments on each appropriate method and class declaration.
 
 ## Contributing/Developer Notes
 See weekly issue in [issues](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues) for the checklist of the week.

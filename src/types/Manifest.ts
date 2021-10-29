@@ -2,13 +2,13 @@ var lib = require("@lib");
 
 import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
+import Item from "./Item";
 
-class Manifest implements IJSONAble {
-  _context = "";
+export default class Manifest implements IJSONAble {
   id = "";
-  readonly type = "Manifest";
-  label?: Label;
-  items = [];
+  readonly type: string = "Manifest";
+  label: Label;
+  items = [] as Item[];
 
   /**
    * Construct a new instance of Manifest
@@ -20,8 +20,11 @@ class Manifest implements IJSONAble {
     lib.ASSERT(contextVersion !== undefined);
     lib.ASSERT(id !== undefined);
 
-    this._context = "http://iiif.io/api/presentation/" + contextVersion + "/context.json";
+    var context:any = {"@context": "http://iiif.io/api/presentation/" + contextVersion + "/context.json"};
+    Object.assign(this, context);
+
     this.id = id;
+    this.label = new Label("en");
   }
 
   /**
@@ -30,7 +33,6 @@ class Manifest implements IJSONAble {
    * @param label The label to add to the manifest (must not be null).
    */
   addLabel(label: Label){
-
     this.label = label;
   }
 
@@ -48,11 +50,28 @@ class Manifest implements IJSONAble {
     }
   }
 
-  // TODO: Add type/interface for Item
-  addItem(){}
+  // TODO: Maybe make this better?
+  addItem(item: Item){
+    this.items.push(item);
+  }
+
+  // TODO: Return something.
   getItem(){}
 
+  /**
+   * @return A JSON-string of this object and all its properties as an IIIF manifest.
+   */
   toJSONString(): string{
-    return JSON.stringify(this);
+    // Softcloning helps to preserve references but copy properties.
+    // i.e. all functions stay intact.
+    var obj = lib.softClone(this);
+    var labelString: { [s: string]: any } = {"label": obj.label.getObject()};
+
+    // Overrides the label object with a label string.
+    // Makes it look really nice for the JSON and gets rid
+    // of that icky class inheritance crap.
+    obj = Object.assign(obj, labelString);
+
+    return JSON.stringify(obj);
   }
 }
