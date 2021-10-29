@@ -7,7 +7,7 @@ export default class ItemAnnotationPage extends Item {
   readonly type: string = "AnnotationPage";
 
   constructor(id: string){
-    super(id);
+    super(id, undefined);
   }
 
   toJSONString(): string {

@@ -16,7 +16,7 @@ export default class ItemCanvas extends Item {
    * @param height The height of this canvas.
    */
   constructor(id: string, width: number, height: number){
-    super(id);
+    super(id, undefined);
     this.width = width;
     this.height = height;
   }

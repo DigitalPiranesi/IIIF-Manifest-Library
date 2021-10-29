@@ -19,13 +19,25 @@ export default abstract class Item implements IItem, IJSONAble{
   items: IItem[];
 
   /**
+   * The motivation property is on some but not all items.
+   *
+   * The question mark allows it to be an optional property.
+   */
+  readonly motivation?: string;
+
+  /**
    * Create an instance of item.
    *
    * @param id The URL for this item.
    */
-  constructor(id: string){
+  constructor(id: string, context: string | string[] | undefined){
     this.id = id;
     this.items = [] as IItem[];
+
+    if(context !== undefined){
+      var context_obj:any = {"@context": context};
+      Object.assign(this, context_obj);
+    }
   }
 
   /**
