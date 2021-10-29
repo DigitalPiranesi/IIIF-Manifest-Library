@@ -1,4 +1,4 @@
-import { ILabel } from "./interfaces/ILabel";
+import ILabel from "./interfaces/ILabel";
 
 export default class Label implements ILabel {
   languageCode: string;

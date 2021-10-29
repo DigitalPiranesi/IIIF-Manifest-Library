@@ -14,7 +14,3 @@ function ASSERT(test?: any){
 }
 
 export { ASSERT };
-
-export interface IJSONAble {
-  toJSONString(): string;
-}

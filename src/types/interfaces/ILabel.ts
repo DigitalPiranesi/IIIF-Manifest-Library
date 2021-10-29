@@ -1,4 +1,4 @@
-import * as Lib from "../../lib";
+import IJSONAble from "./IJSONAble";
 
 /**
  * The ILabel interface provides the architecture for
@@ -8,7 +8,7 @@ import * as Lib from "../../lib";
  * localisation code for the language and an array of strings
  * as the value.
  */
-export interface ILabel extends Lib.IJSONAble {
+export default interface ILabel extends IJSONAble {
   languageCode: string;
   values: string[];
 

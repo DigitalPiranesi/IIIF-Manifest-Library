@@ -1,9 +1,9 @@
 var lib = require("@lib");
 
 import Label from "./Label";
-import * as Lib from "../lib";
+import IJSONAble from "./interfaces/IJSONAble";
 
-class Manifest implements Lib.IJSONAble {
+class Manifest implements IJSONAble {
   _context = "";
   id = "";
   readonly type = "Manifest";
