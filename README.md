@@ -44,5 +44,15 @@ Documentation is included as comments on each appropriate method and class decla
 ## Contributing/Developer Notes
 See weekly issue in [issues](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues) for the checklist of the week.
 
+If you have any suggestions or contributions to make, please do! Here is a simplified list of how to do this in Git:
+
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b YourFeatureName)
+3. Commit your Changes (git commit -m 'Add some FeatureName')
+4. Push to the Branch (git push origin YourFeatureName)
+5. Open a Pull Request
+
+If there are any issues creating branches or pushing to the repository, please open an [issue](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues).
+
 ### Notes on Libraries
 This software uses [NodeJS](https://www.nodejs.org) and [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html), both of which are free and open-source. While other languages may be used, it is suggested to at least be familiar with vanilla Javascript and Typescript, as well as the NodeJS built-in libraries.
