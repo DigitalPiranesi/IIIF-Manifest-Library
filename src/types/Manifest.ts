@@ -30,10 +30,24 @@ export default class Manifest implements IJSONAble {
   /**
    * Add label to this manifest.
    *
-   * @param label The label to add to the manifest (must not be null).
+   * @param label The label to add to the manifest (must not be null). //getLabel already determines if undefined?
    */
   addLabel(label: Label){
     this.label = label;
+  }
+
+  /**
+   * Removes label from manifest, makes label undefined
+   * 
+   * @return The prior instance of label
+   */
+  removeLabel(): Label | null {
+    if(this.label !== undefined){
+      this.label = null;
+      return this.label;
+    }else{
+      return null;
+    }
   }
 
   /**
