@@ -8,6 +8,7 @@ var manifest = new Manifest(3, "test_id");
 var label = new Label("en", ["Tom and Jerry love to play."]);
 
 manifest.addLabel(label);
+manifest.removeLabel();
 
 describe("The manifest object", function() {
   it("should have a context object set to IIIF v3", function() {
@@ -26,13 +27,13 @@ describe("The manifest object", function() {
     assert.equal(0, manifest.items.length);
   });
 
-  it("should have a label", function(){
-    assert.notEqual('', manifest.label.toJSONString());
+  it("should not have a label", function(){
+    assert.equal(null, manifest.label);
   });
 
-  it("should have a single, English label", function(){
+  /*it("should have a single, English label", function(){
     mlog.log("\n\tValue of label: " + manifest.label.getValues()[0]);
     assert.equal(1, manifest.label.values.length);
     assert.equal("Tom and Jerry love to play.", manifest.label.getValues()[0]);
-  });
+  });*/
 })

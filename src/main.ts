@@ -11,7 +11,6 @@ var label: Label = new Label("en", ["Tom and Jerry doing the whole like fighting
 var manifest: Manifest = new Manifest(3, "https://piranesi-test.reclaim.hosting/walts-test-book/media/Manifest_TomJerryV2.json");
 var item: Item = new ItemCanvas("test-canvas", 10, 10);
 
-
 manifest.addLabel(label);
 manifest.addItem(item);
 

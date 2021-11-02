@@ -7,7 +7,7 @@ import Item from "./Item";
 export default class Manifest implements IJSONAble {
   id = "";
   readonly type: string = "Manifest";
-  label: Label;
+  label: Label | null;
   items = [] as Item[];
 
   /**
@@ -38,13 +38,15 @@ export default class Manifest implements IJSONAble {
 
   /**
    * Removes label from manifest, makes label undefined
-   * 
+   *
    * @return The prior instance of label
    */
   removeLabel(): Label | null {
     if(this.label !== undefined){
+      var previous = this.label;
       this.label = null;
-      return this.label;
+
+      return previous;
     }else{
       return null;
     }
