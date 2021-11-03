@@ -6,7 +6,7 @@
   ],
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "./dist",
+    "outDir": "./build",
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
@@ -15,5 +15,6 @@
     "noImplicitAny": true,
     "target": "es5",
     "strictNullChecks": true,
+    "downlevelIteration": true
   }
 }

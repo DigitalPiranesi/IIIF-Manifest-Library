@@ -1,16 +1,18 @@
 const assert = require('assert');
 const mlog = require("mocha-logger");
 
-var Manifest = require("../dist/types/Manifest").default;
-var Label = require("../dist/types/Label").default;
+var Manifest = require("../build/types/Manifest").default;
+var Label = require("../build/types/Label").default;
 
 var manifest = new Manifest(3, "test_id");
-var label = new Label("en", ["Tom and Jerry love to play."]);
+var label = new Label();
 
 manifest.addLabel(label);
-manifest.removeLabel();
 
-describe("The manifest object", function() {
+label.addValue("en", ["Hello world!"]);
+label.addValue("fr", ["Bonjour, monde!", "Salut, world!"]);
+
+/*describe("The manifest object", function() {
   it("should have a context object set to IIIF v3", function() {
     assert.equal('http://iiif.io/api/presentation/3/context.json', manifest["@context"]);
   });
@@ -27,13 +29,13 @@ describe("The manifest object", function() {
     assert.equal(0, manifest.items.length);
   });
 
-  it("should not have a label", function(){
-    assert.equal(null, manifest.label);
+  it("should have two languages", function(){
+    assert.equal(2, manifest.label.getObject().length);
   });
 
   /*it("should have a single, English label", function(){
     mlog.log("\n\tValue of label: " + manifest.label.getValues()[0]);
     assert.equal(1, manifest.label.values.length);
     assert.equal("Tom and Jerry love to play.", manifest.label.getValues()[0]);
-  });*/
-})
+  });
+})*/

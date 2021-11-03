@@ -1,51 +1,93 @@
+var lib = require("../lib");
 import ILabel from "./interfaces/ILabel";
 
 // TODO: Actually make the labels be able to have
 // multiple languages. Not important now.
-export default class Label implements ILabel {
-  languageCode: string;
-  values: string[];
+
+/**
+ * Usage:
+ *
+ * var label = new Label();
+ *
+ * label.addValue('en', ['Hello world!', 'Hi world!']);
+ * label.addValue('fr', 'Bonjour, monde!');
+ */
+export default class Label{
+  languageMap: Map<string, string[]>;
 
   /**
    * @param languageCode The two-character language code for this label
    * @param values Optional, pre-defined values to insert.
    */
-  constructor(languageCode: string, values?: string[]){
-    this.languageCode = languageCode;
-    this.values = values || [];
-  }
+  constructor(languageCode?: string, values?: string[]){
+    this.languageMap = new Map<string, string[]>();
 
-  addValue(value: string): void{
-    this.values.push(value);
-  }
-
-  getValues(): string[]{
-    return this.values;
+    if(languageCode !== undefined){
+      this.languageMap.set(languageCode, values || []);
+    }
   }
 
   /**
-   * Returns this label as a properly formatted "label" manifest object
-   * rather than a stringified version of this class.
+   * This functions adds an entire language to the label, with the option of an
+   * array of strings.
+   *
+   * @param languageCode The two-character code for the language. See https://github.com/ladjs/i18n-locales for a list of them.
+   * @param value Either a single string or an array of strings to which to set the label for this language.
+   * @return
    */
-  getObject(): { [s: string]: string[] }{
-    var obj: { [s: string]: string[] } = {};
-    obj[this.languageCode] = this.values;
+  addValue(languageCode: string, value: string | string[]): string[]{
+    var _array = this.languageMap.get(languageCode);
 
-    return obj;
+    if(_array !== undefined){
+      lib.addAll(_array, value);
+    }else{
+      _array = [];
+
+      lib.addAll(_array, value)
+      this.languageMap.set(languageCode, _array);
+    }
+
+    return _array;
   }
 
   /**
-   * Returns this label as a properly formatted "label" manifest object string
+   * Fetches all of the strings for a specific language code.
+   *
+   * @param languageCode The two-character language code.
+   * @return An array of the strings associated with that language or null if it is unset.
+   */
+  getValues(languageCode: string): string[] | null {
+    return this.languageMap.get(languageCode) || null;
+  }
+
+  /**
+   * Fetches the entire collection of languages and strings as a single object.
+   *
+   * @return An array of `{"--": [ ] }` objects where "--" is the two character language code.
+   */
+  getObject(): {[s: string]: string[] } {
+    var array_of_values: any = {};
+
+    for(const key of this.languageMap.keys()){
+      var element: string[] = this.languageMap.get(key) || [];
+      var key1: any = key;
+
+      if(element.length === undefined && element.length <= 0){
+        continue;
+      }
+
+      array_of_values[key1] = element;
+      console.log(array_of_values[key1]);
+    }
+
+    return array_of_values;
+  }
+
+  /**
+   * Returns this label as a properly formatted `label` manifest object string
    * rather than a stringified version of this class.
    */
   toJSONString(): string{
-    if(this.values.length <= 0){
-      return "";
-    }
-
-    var obj: { [s: string]: string[] } = {};
-    obj[this.languageCode] = this.values;
-
-    return JSON.stringify(obj);
+    return JSON.stringify(this.getObject());
   }
 }

@@ -9,9 +9,5 @@ import IJSONAble from "./IJSONAble";
  * as the value.
  */
 export default interface ILabel extends IJSONAble {
-  languageCode: string;
   values: string[];
-
-  addValue(value: string): void;
-  getValues(): string[];
 }
