@@ -3,7 +3,7 @@ import Item from "./Item";
 /**
  * This is the type for the IIIF "AnnotationPage"
  */
-export default class ItemAnnotationPage extends Item {
+export default class ItemWebAnnotationPage extends Item {
   readonly type: string = "AnnotationPage";
 
   constructor(id: string){
