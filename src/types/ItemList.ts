@@ -11,6 +11,9 @@ export default class ItemList {
     this.items = new Map<string, IItem>();
   }
 
+  /**
+   *
+   */
   addItem(item: IItem){
     this.items.set(item.id, item);
   }

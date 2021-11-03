@@ -19,13 +19,15 @@ export default class ItemCanvas extends Item {
    */
   constructor(id: string, width: number, height: number){
     super(id, undefined);
+
     this.width = width;
     this.height = height;
+    this.annotationPages = [];
   }
 
   /**
    * Add an ItemAnnotationPage to annotationPages
-   * 
+   *
    * @param annotationPage the ItemAnnotationPage
    */
   addAnnotationPage(annotationPage: ItemAnnotationPage) {
@@ -34,17 +36,16 @@ export default class ItemCanvas extends Item {
     } catch(e: unknown) {
       console.log("Unable to add annotation page");
     }
-    
   }
 
   /**
    * Removes an ItemAnnotationPage to annotationPages
-   * 
+   *
    * @param annotationPage the ItemAnnotationPage
    */
   removeAnnotationPage(annotationPage: ItemAnnotationPage) {
     this.annotationPages.forEach((element, index)=> {
-      if(element == annotationPage) 
+      if(element == annotationPage)
         delete this.annotationPages[index];
       else
         console.log("Unable to find annotationPage to delete")
@@ -53,10 +54,10 @@ export default class ItemCanvas extends Item {
 
   /**
    * Returns AnnotationPages array
-   * 
+   *
    * @returns annotationPages
    */
-  getAnnotationPages() {
+  getAnnotationPages(): ItemAnnotationPage[] {
     return this.annotationPages;
   }
 
