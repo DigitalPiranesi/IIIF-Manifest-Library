@@ -12,16 +12,30 @@ export default class ItemList {
   }
 
   /**
-   *
+   * Adds item to the list
+   * 
+   * @param item
    */
   addItem(item: IItem){
     this.items.set(item.id, item);
   }
 
+  /**
+   * Returns item according to ID
+   * 
+   * @param id 
+   * @returns item connected with ID or undefined
+   */
   getItem(id: string): IItem | undefined {
     return this.items.get(id);
   }
 
+  /**
+   * Removes item from list
+   * 
+   * @param item 
+   * @returns boolean whether successfully deleted
+   */
   removeItem(item: IItem | string): boolean{
     if(typeof item === "string"){
       return this.items.delete(item);
