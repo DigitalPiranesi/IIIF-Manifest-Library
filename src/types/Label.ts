@@ -51,6 +51,16 @@ export default class Label{
   }
 
   /**
+   * Removes all of the strings associated with a specific language.
+   *
+   * @param languageCode The two-character language code to remove.
+   * @return True if successful, false otherwise.
+   */
+  removeLabel(languageCode: string): boolean {
+    return this.languageMap.delete(languageCode);
+  }
+
+  /**
    * Fetches all of the strings for a specific language code.
    *
    * @param languageCode The two-character language code.
