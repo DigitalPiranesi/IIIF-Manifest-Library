@@ -8,7 +8,19 @@ export default class Manifest implements IJSONAble {
   id = "";
   readonly type: string = "Manifest";
   label: Label | null;
-  items = [] as Item[];
+
+  /*
+   * Items is a single object whose properties are the `id` of an item and
+   * the item:
+   *
+   * items:
+   * {
+   *   "id1": Item1,
+   *   "id2": Item2,
+   *   etc.
+   * }
+   */
+  items: {[s: string]: Item} = {};
 
   /**
    * Construct a new instance of Manifest
@@ -66,13 +78,56 @@ export default class Manifest implements IJSONAble {
     }
   }
 
-  // TODO: Maybe make this better?
-  addItem(item: Item){
-    this.items.push(item);
+  /**
+   * Add an item to the item list. Same `id` must not exist or the function will
+   * fail unless `force` is set.
+   *
+   * @param item The item to add
+   * @param force (Optional) If true, the function will override the existing entry with the same `id`.
+   * @return True if insertion was successful, false if not.
+   */
+  addItem(item: Item, force?: boolean): boolean{
+    if(typeof this.items[item.id] === "undefined" || this.items[item.id] == null){
+      this.items[item.id] = item;
+
+      return true;
+    }else if(force){
+      this.items[item.id] = item;
+
+      return true;
+    }
+
+    return false;
   }
 
-  // TODO: Return something.
-  getItem(){}
+  /**
+   * Get an item by its `id`
+   *
+   * @param id A string of the `id` to fetch.
+   * @return The item object or null if it does not exist.
+   */
+  getItem(id: string): Item | null{
+    if(this.items[id] !== undefined && this.items[id] !== null){
+      return this.items[id];
+    }
+
+    return null;
+  }
+
+  /**
+   * Returns the list of items.
+   *
+   * @return The list of items (not null)
+   */
+  getItemList(): Item[]{
+    var array_of_items: Item[] = [];
+
+    for(const id in this.items){
+      array_of_items.push(this.items[id]);
+    }
+
+    return array_of_items || [];
+  }
 
   /**
    * @return A JSON-string of this object and all its properties as an IIIF manifest.
