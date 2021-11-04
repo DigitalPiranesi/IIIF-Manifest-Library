@@ -60,8 +60,4 @@ export default class ItemCanvas extends Item {
   getAnnotationPages(): ItemWebAnnotationPage[] {
     return this.annotationPages;
   }
-
-  toJSONString(): string {
-    return JSON.stringify(this);
-  }
 }

@@ -1,4 +1,5 @@
 import IJSONAble from "./IJSONAble";
+import Item from "../Item";
 
 /**
  * Abstract interface for anything Itemizable.
@@ -6,9 +7,8 @@ import IJSONAble from "./IJSONAble";
 export default interface IItem extends IJSONAble {
   id: string;
   readonly type: string;
-  items?: IItem[];
+  items?: Item[];
 
   toJSONString(): string;
-  addItem(item: IItem): void;
-  removeItem(item: IItem): void;
+  getItems(): Item[];
 }

@@ -1,5 +1,6 @@
 import IJSONAble from "./interfaces/IJSONAble";
 import IItem from "./interfaces/IItem";
+var lib = require("../lib");
 
 /**
  * Abstract class for an "item" as an umbrella idea. Anything can be an item,
@@ -16,7 +17,7 @@ export default abstract class Item implements IItem, IJSONAble{
 
   /* Sub-items (i.e. what is just the general "items" array that always pops up)
      in the manifests */
-  items: IItem[];
+  items: Item[];
 
   /**
    * The motivation property is on some but not all items.
@@ -32,7 +33,7 @@ export default abstract class Item implements IItem, IJSONAble{
    */
   constructor(id: string, context: string | string[] | undefined){
     this.id = id;
-    this.items = [] as IItem[];
+    this.items = [] as Item[];
 
     if(typeof context !== "undefined"){
       var context_obj:any = {"@context": context};
@@ -46,7 +47,7 @@ export default abstract class Item implements IItem, IJSONAble{
    * @param item The item to add to the list.
    * @note This method can be overriden if desired.
    */
-  addItem(item: IItem): void{
+  addItem(item: Item): void{
     this.items.push(item);
   }
 
@@ -55,10 +56,12 @@ export default abstract class Item implements IItem, IJSONAble{
    *
    * @param item The item to remove if it exists.
    */
-  removeItem(item: IItem): void{
-    if(this.items.indexOf(item) > 0){
-      delete this.items[this.items.indexOf(item)];
-    }
+  removeItem(item: Item): void{
+    // todo
+  }
+
+  getItems(): Item[]{
+    return this.items;
   }
 
   /**
@@ -67,6 +70,7 @@ export default abstract class Item implements IItem, IJSONAble{
    * @return A JSON string.
    */
   toJSONString(): string {
-    return JSON.stringify(this);
+    return JSON.stringify(this.items);
   }
+
 }
