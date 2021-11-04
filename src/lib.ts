@@ -58,4 +58,8 @@ function addAll(obj: any, value: any | any[]){
   }
 }
 
-export { ASSERT, clone, softClone, addAll };
+function isDefined(obj: any){
+  return (typeof obj !== "undefined" ? true : false);
+}
+
+export { ASSERT, clone, softClone, addAll, isDefined };

@@ -2,25 +2,14 @@ var lib = require("../lib");
 
 import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
+import IItem from "./interfaces/IItem";
 import Item from "./Item";
 
 export default class Manifest implements IJSONAble {
   id = "";
   readonly type: string = "Manifest";
   label: Label | null;
-
-  /*
-   * Items is a single object whose properties are the `id` of an item and
-   * the item:
-   *
-   * items:
-   * {
-   *   "id1": Item1,
-   *   "id2": Item2,
-   *   etc.
-   * }
-   */
-  items: {[s: string]: Item} = {};
+  items: Item[];
 
   /**
    * Construct a new instance of Manifest
@@ -37,6 +26,7 @@ export default class Manifest implements IJSONAble {
 
     this.id = id;
     this.label = new Label("en");
+    this.items = [] as Item[];
   }
 
   /**
@@ -86,18 +76,8 @@ export default class Manifest implements IJSONAble {
    * @param force (Optional) If true, the function will override the existing entry with the same `id`.
    * @return True if insertion was successful, false if not.
    */
-  addItem(item: Item, force?: boolean): boolean{
-    if(typeof this.items[item.id] === "undefined" || this.items[item.id] == null){
-      this.items[item.id] = item;
-
-      return true;
-    }else if(force){
-      this.items[item.id] = item;
-
-      return true;
-    }
-
-    return false;
+  addItem(item: Item): void{
+    this.items.push(item);
   }
 
   /**
@@ -106,11 +86,8 @@ export default class Manifest implements IJSONAble {
    * @param id A string of the `id` to fetch.
    * @return The item object or null if it does not exist.
    */
-  getItem(id: string): Item | null{
-    if(this.items[id] !== undefined && this.items[id] !== null){
-      return this.items[id];
-    }
-
+  getItem(id: string): IItem | null{
+    // TODO
     return null;
   }
 
@@ -120,13 +97,7 @@ export default class Manifest implements IJSONAble {
    * @return The list of items (not null)
    */
   getItemList(): Item[]{
-    var array_of_items: Item[] = [];
-
-    for(const id in this.items){
-      array_of_items.push(this.items[id]);
-    }
-
-    return array_of_items || [];
+    return this.items;
   }
 
   /**
@@ -137,11 +108,13 @@ export default class Manifest implements IJSONAble {
     // i.e. all functions stay intact.
     var obj = lib.softClone(this);
     var labelString: { [s: string]: any } = {"label": obj.label.getObject()};
+    var itemString: { [s: string]: any } = {"items": this.items};
 
     // Overrides the label object with a label string.
     // Makes it look really nice for the JSON and gets rid
     // of that icky class inheritance crap.
     obj = Object.assign(obj, labelString);
+    obj = Object.assign(obj, itemString);
 
     return JSON.stringify(obj);
   }
