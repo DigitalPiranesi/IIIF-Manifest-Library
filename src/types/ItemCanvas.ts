@@ -8,7 +8,6 @@ export default class ItemCanvas extends Item {
   readonly type: string = "Canvas";
   readonly width: number;
   readonly height: number;
-  annotationPages: ItemWebAnnotationPage[];
 
   /**
    * Create a new instance of Canvas
@@ -22,7 +21,6 @@ export default class ItemCanvas extends Item {
 
     this.width = width;
     this.height = height;
-    this.annotationPages = [];
   }
 
   /**
@@ -32,7 +30,7 @@ export default class ItemCanvas extends Item {
    */
   addAnnotationPage(annotationPage: ItemWebAnnotationPage) {
     try {
-      this.annotationPages.push(annotationPage);
+      this.items.push(annotationPage);
     } catch(e: unknown) {
       console.log("Unable to add annotation page");
     }
@@ -44,9 +42,9 @@ export default class ItemCanvas extends Item {
    * @param annotationPage the ItemAnnotationPage
    */
   removeAnnotationPage(annotationPage: ItemWebAnnotationPage) {
-    this.annotationPages.forEach((element, index)=> {
+    this.items.forEach((element, index)=> {
       if(element == annotationPage)
-        delete this.annotationPages[index];
+        delete this.items[index];
       else
         console.log("Unable to find annotationPage to delete")
     });
@@ -58,6 +56,6 @@ export default class ItemCanvas extends Item {
    * @returns annotationPages
    */
   getAnnotationPages(): ItemWebAnnotationPage[] {
-    return this.annotationPages;
+    return this.items;
   }
 }

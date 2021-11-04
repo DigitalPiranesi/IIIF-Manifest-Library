@@ -7,9 +7,13 @@ export default class ItemWebAnnotationPage extends Item {
   readonly type: string = "AnnotationPage";
 
   constructor(id: string){
-    super(id, undefined);
+    super(id, undefined)
   }
 
+  /**
+   *
+   * @return
+   */
   toJSONString(): string {
     return JSON.stringify(this);
   }

@@ -26,6 +26,8 @@ export default abstract class Item implements IItem, IJSONAble{
    */
   readonly motivation?: string;
 
+  [ "@context" ]?: string | string[];
+
   /**
    * Create an instance of item.
    *
@@ -36,8 +38,7 @@ export default abstract class Item implements IItem, IJSONAble{
     this.items = [] as Item[];
 
     if(typeof context !== "undefined"){
-      var context_obj:any = {"@context": context};
-      Object.assign(this, context_obj);
+      this["@context"] = context;
     }
   }
 
@@ -51,6 +52,22 @@ export default abstract class Item implements IItem, IJSONAble{
     this.items.push(item);
   }
 
+  addContext(context: string){
+    if(typeof this["@context"] === "undefined"){
+      this["@context"] = context;
+      return;
+    }
+
+    if(Array.isArray(this["@context"])){
+      this["@context"].push(context);
+    }else{
+      var arr = [];
+
+      arr.push(this["@context"]);
+      arr.push(context);
+      this["@context"] = arr;
+    }
+  }
   /**
    * Remove an item from the array of sub-items.
    *

@@ -6,18 +6,20 @@ import Manifest from "./types/Manifest";
 import Item from "./types/Item";
 import ItemCanvas from "./types/ItemCanvas";
 import ItemWebAnnotationPage from "./types/ItemWebAnnotationPage";
+import ItemWebAnnotation from "./types/ItemWebAnnotation";
 
 var label: Label = new Label();
 var manifest: Manifest = new Manifest(3, "https://piranesi-test.reclaim.hosting/walts-test-book/media/Manifest_TomJerryV2.json");
-var item: Item = new ItemCanvas("test-canvas", 10, 10);
+var canvas: Item = new ItemCanvas("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1", 10, 10);
+var annotationPage: Item = new ItemWebAnnotationPage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/page/p1/1");
+var annotation: Item = new ItemWebAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0001-image", "painting", "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1", "http://iiif.io/api/presentation/3/context.json");
 
 label.addValue("en", ["Hello world!"]);
 label.addValue("fr", ["Bonjour, monde!", "Salut, world!"]);
 
 manifest.addLabel(label);
-manifest.addItem(item);
-
-item.addItem(new ItemWebAnnotationPage(";"));
+annotationPage.addItem(annotation);
+canvas.addItem(annotationPage);
+manifest.addItem(canvas);
 
 console.log(manifest.toJSONString());
-console.log(item);
