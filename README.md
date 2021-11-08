@@ -38,7 +38,7 @@ npm test
 ```
 
 ## Documentation
-Documentation is included as comments on each appropriate method and class declaration.
+Documentation is included as comments on each appropriate method and class declaration. Eventually, usage documentation will be written and published here.
 
 ### Useful Reading
 * [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
