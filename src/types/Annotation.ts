@@ -1,6 +1,6 @@
 import IJSONAble from "./interfaces/IJSONAble";
 import Target from "./Target";
-import Body from "./Body";
+import AnnotationBody from "./AnnotationBody";
 import EnumAnnotationMotivation from "./EnumAnnotationMotivation";
 var lib = require("../lib");
 
@@ -14,7 +14,7 @@ export default abstract class Annotation implements IJSONAble {
     id: string;
     readonly type: string = "Annotation";
     motivation: EnumAnnotationMotivation;
-    abstract body: Body;
+    abstract body: AnnotationBody;
     target?: Target;
 
     /**
@@ -52,7 +52,7 @@ export default abstract class Annotation implements IJSONAble {
      *
      * @param body
      */
-    setBody(body: Body) {
+    setBody(body: AnnotationBody) {
         this.body = body;
     }
 

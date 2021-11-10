@@ -1,7 +1,7 @@
 import IJSONAble from "./interfaces/IJSONAble";
 
 
-export default class Body implements IJSONAble {
+export default class AnnotationBody implements IJSONAble {
 
     constructor() {
 
