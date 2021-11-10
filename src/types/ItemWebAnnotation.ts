@@ -10,6 +10,7 @@ export default class ItemWebAnnotation extends Item {
   motivation: EnumWebAnnotationMotivation;
   target: any; // Target can also be a custom object with all kinds of properties. Let's just leave it as `any` for now
   //TODO: Optional AnnotationBody
+  body?: any;
 
   /**
    *
@@ -31,6 +32,27 @@ export default class ItemWebAnnotation extends Item {
    */
   setTarget(target: any){
     this.target = target;
+  }
+
+  /**
+   *
+   * @param body
+   */
+  addBody(body: any): void{
+    this.body = body;
+  }
+
+  /**
+   *
+   * @return
+   */
+  removeBody(): boolean{
+    if(typeof this.body !== "undefined"){
+      delete this.body;
+      return true;
+    }
+
+    return false;
   }
 
   /**

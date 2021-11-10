@@ -89,8 +89,13 @@ export default class Manifest implements IJSONAble {
    * @param id A string of the `id` to fetch.
    * @return The item object or null if it does not exist.
    */
-  getItem(id: string): IItem | null{
-    // TODO
+  getItem(id: string): Item | null{
+    for(const item of this.items){
+      if(item.id === id){
+        return item;
+      }
+    }
+
     return null;
   }
 
@@ -102,7 +107,7 @@ export default class Manifest implements IJSONAble {
   getItemList(): Item[]{
     return this.items;
   }
-  
+
   /**
    *
    *

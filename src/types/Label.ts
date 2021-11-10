@@ -1,9 +1,6 @@
 var lib = require("../lib");
 import ILabel from "./interfaces/ILabel";
 
-// TODO: Actually make the labels be able to have
-// multiple languages. Not important now.
-
 /**
  * Usage:
  *

@@ -68,13 +68,20 @@ export default abstract class Item implements IItem, IJSONAble{
       this["@context"] = arr;
     }
   }
+  
   /**
    * Remove an item from the array of sub-items.
    *
    * @param item The item to remove if it exists.
    */
   removeItem(item: Item): void{
-    // todo
+    for(const item of this.items){
+      if(item.id === item.id){
+        var index = this.items.indexOf(item);
+
+        delete this.items[index];
+      }
+    }
   }
 
   getItems(): Item[]{
