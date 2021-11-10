@@ -8,6 +8,7 @@ export default class ItemCanvas extends Item {
   readonly type: string = "Canvas";
   readonly width: number;
   readonly height: number;
+  annotations: Item[];
 
   /**
    * Create a new instance of Canvas
@@ -21,6 +22,7 @@ export default class ItemCanvas extends Item {
 
     this.width = width;
     this.height = height;
+    this.annotations = [] as Item[];
   }
 
   /**
@@ -48,6 +50,10 @@ export default class ItemCanvas extends Item {
       else
         console.log("Unable to find annotationPage to delete")
     });
+  }
+
+  addAnnotation(item: Item){
+    this.annotations.push(item);
   }
 
   /**

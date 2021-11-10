@@ -13,7 +13,6 @@ export default class Manifest implements IJSONAble {
   label: Label | null;
   items: Item[];
   behavior?: EnumManifestBehavior[] | EnumManifestBehavior;
-  annotations: Item[];
 
   /**
    * Construct a new instance of Manifest
@@ -31,7 +30,6 @@ export default class Manifest implements IJSONAble {
     this.id = id;
     this.label = new Label("en");
     this.items = [] as Item[];
-    this.annotations = [] as Item[];
   }
 
   /**
@@ -104,11 +102,7 @@ export default class Manifest implements IJSONAble {
   getItemList(): Item[]{
     return this.items;
   }
-
-  addAnnotation(item: Item): void{
-    this.annotations.push(item);
-  }
-
+  
   /**
    *
    *

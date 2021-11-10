@@ -14,7 +14,7 @@ import Annotation from "./types/Annotation";
 
 var label: Label = new Label();
 var manifest: Manifest = new Manifest(3, "https://piranesi-test.reclaim.hosting/walts-test-book/media/Manifest_TomJerryV2.json");
-var canvas: Item = new ItemCanvas("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1", 10, 10);
+var canvas: ItemCanvas = new ItemCanvas("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1", 10, 10);
 var webAnnotationPage: Item = new ItemWebAnnotationPage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/page/p1/1");
 var annotationPage: Item = new ItemWebAnnotationPage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/page/p2/1");
 
@@ -27,10 +27,10 @@ manifest.addLabel(label);
 
 webAnnotationPage.addItem(annotation);
 canvas.addItem(annotationPage);
+canvas.addAnnotation(annotationPage);
 manifest.addItem(canvas);
 
 annotationPage.addItem(textualAnnotation);
-manifest.addAnnotation(annotationPage);
 
 
 console.log(manifest.toJSONString());

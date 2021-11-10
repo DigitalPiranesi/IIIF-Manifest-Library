@@ -9,7 +9,7 @@ export default class TextualAnnotation extends Annotation {
     language: string,
     format: string
   } = {
-    type: "TextualAnnotation",
+    type: "TextualBody",
     value: "",
     language: "",
     format: "text/html"

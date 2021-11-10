@@ -23,6 +23,7 @@ export default abstract class Annotation extends Item implements IJSONAble{
      */
     constructor(id: string, motivation: EnumAnnotationMotivation, target?: string) {
         super(id, undefined);
+        this.addContext("http://www.w3.org/ns/anno.jsonld");
 
         this.motivation = motivation;
 
