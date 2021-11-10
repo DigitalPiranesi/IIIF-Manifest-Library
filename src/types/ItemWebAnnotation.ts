@@ -6,6 +6,11 @@ import * as LIB from "../lib";
  */
 export default class ItemWebAnnotation extends Item {
   readonly type: string = "Annotation";
+  /**enum motivation {
+    painting = "painting",
+    commenting = "commenting",
+    supplementing = "supplementing",
+  }*/
   motivation: string;
   target: any; // Target can also be a custom object with all kinds of properties. Let's just leave it as `any` for now
   //TODO: Optional AnnotationBody
