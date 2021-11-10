@@ -62,4 +62,10 @@ function isDefined(obj: any){
   return (typeof obj !== "undefined" ? true : false);
 }
 
-export { ASSERT, clone, softClone, addAll, isDefined };
+function getURLExtension(url: string): string | undefined{
+  var ret = url.split(/[#?]/)[0]!.split('.')!.pop()!.trim();
+
+  return ret;
+}
+
+export { ASSERT, clone, softClone, addAll, isDefined, getURLExtension };
