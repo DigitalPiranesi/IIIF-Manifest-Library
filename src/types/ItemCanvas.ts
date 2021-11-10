@@ -1,5 +1,6 @@
 import Item from "./Item";
 import ItemWebAnnotationPage from "./ItemWebAnnotationPage";
+import ItemAnnotationPage from "./ItemAnnotationPage";
 
 /**
  * This is the type for the IIIF type "Canvas".
@@ -8,7 +9,7 @@ export default class ItemCanvas extends Item {
   readonly type: string = "Canvas";
   readonly width: number;
   readonly height: number;
-  annotations: Item[];
+  annotations: ItemAnnotationPage[];
 
   /**
    * Create a new instance of Canvas
@@ -22,37 +23,10 @@ export default class ItemCanvas extends Item {
 
     this.width = width;
     this.height = height;
-    this.annotations = [] as Item[];
+    this.annotations = [] as ItemWebAnnotationPage[];
   }
 
-  /**
-   * Add an ItemAnnotationPage to annotationPages
-   *
-   * @param annotationPage the ItemAnnotationPage
-   */
-  addAnnotationPage(annotationPage: ItemWebAnnotationPage) {
-    try {
-      this.items.push(annotationPage);
-    } catch(e: unknown) {
-      console.log("Unable to add annotation page");
-    }
-  }
-
-  /**
-   * Removes an ItemAnnotationPage to annotationPages
-   *
-   * @param annotationPage the ItemAnnotationPage
-   */
-  removeAnnotationPage(annotationPage: ItemWebAnnotationPage) {
-    this.items.forEach((element, index)=> {
-      if(element == annotationPage)
-        delete this.items[index];
-      else
-        console.log("Unable to find annotationPage to delete")
-    });
-  }
-
-  addAnnotation(item: Item){
+  addAnnotationPage(item: ItemAnnotationPage){
     this.annotations.push(item);
   }
 
@@ -61,7 +35,11 @@ export default class ItemCanvas extends Item {
    *
    * @returns annotationPages
    */
-  getAnnotationPages(): ItemWebAnnotationPage[] {
+  getWebAnnotationPages(): ItemWebAnnotationPage[] {
     return this.items;
+  }
+
+  getAnnotationPages(): ItemAnnotationPage[] {
+    return this.annotations;
   }
 }

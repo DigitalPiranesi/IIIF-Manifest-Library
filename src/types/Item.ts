@@ -68,20 +68,20 @@ export default abstract class Item implements IItem, IJSONAble{
       this["@context"] = arr;
     }
   }
-  
+
   /**
    * Remove an item from the array of sub-items.
    *
    * @param item The item to remove if it exists.
    */
   removeItem(item: Item): void{
-    for(const item of this.items){
-      if(item.id === item.id){
-        var index = this.items.indexOf(item);
-
+    this.items.forEach((element, index)=> {
+      if(element.id == item.id){
         delete this.items[index];
+      }else{
+        console.log("Unable to find annotationPage to delete")
       }
-    }
+    });
   }
 
   getItems(): Item[]{
@@ -96,5 +96,4 @@ export default abstract class Item implements IItem, IJSONAble{
   toJSONString(): string {
     return JSON.stringify(this.items);
   }
-
 }

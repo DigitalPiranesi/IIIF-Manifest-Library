@@ -27,7 +27,7 @@ manifest.addLabel(label);
 
 webAnnotationPage.addItem(annotation);
 canvas.addItem(annotationPage);
-canvas.addAnnotation(annotationPage);
+canvas.addAnnotationPage(annotationPage);
 manifest.addItem(canvas);
 
 annotationPage.addItem(textualAnnotation);
