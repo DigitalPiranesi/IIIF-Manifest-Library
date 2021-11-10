@@ -8,6 +8,7 @@ import EnumManifestBehavior from "./enums/EnumManifestBehavior";
 import Annotation from "./Annotation";
 
 export default class Manifest implements IJSONAble {
+  [ "@context" ]?: string | string[];
   id = "";
   readonly type: string = "Manifest";
   label: Label | null;
@@ -24,9 +25,7 @@ export default class Manifest implements IJSONAble {
     lib.ASSERT(contextVersion !== undefined);
     lib.ASSERT(id !== undefined);
 
-    var context:any = {"@context": "http://iiif.io/api/presentation/" + contextVersion + "/context.json"};
-    Object.assign(this, context);
-
+    this["@context"] = "http://iiif.io/api/presentation/" + contextVersion + "/context.json";
     this.id = id;
     this.label = new Label("en");
     this.items = [] as Item[];
