@@ -4,7 +4,7 @@ import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
 import IItem from "./interfaces/IItem";
 import Item from "./Item";
-import EnumManifestBehavior from "./EnumManifestBehavior";
+import EnumManifestBehavior from "./enums/EnumManifestBehavior";
 
 export default class Manifest implements IJSONAble {
   id = "";

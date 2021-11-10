@@ -1,7 +1,7 @@
 import IJSONAble from "./interfaces/IJSONAble";
 import Target from "./Target";
 import AnnotationBody from "./AnnotationBody";
-import EnumAnnotationMotivation from "./EnumAnnotationMotivation";
+import EnumAnnotationMotivation from "./enums/EnumAnnotationMotivation";
 var lib = require("../lib");
 
 /**

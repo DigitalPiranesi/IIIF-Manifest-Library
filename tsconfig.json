@@ -2,7 +2,8 @@
   "files": [
     "src/*.ts",
     "src/types/*.ts",
-    "src/types/interfaces/*.ts"
+    "src/types/interfaces/*.ts",
+    "src/types/enums/*.ts"
   ],
   "compilerOptions": {
     "module": "commonjs",
