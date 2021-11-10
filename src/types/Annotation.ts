@@ -11,7 +11,7 @@ var lib = require("../lib");
 export default abstract class Annotation implements IJSONAble {
 
     //@?
-    context: string;
+    context: string = "";
     id: string;
     readonly type: string;
     //TODO make enum
@@ -20,28 +20,29 @@ export default abstract class Annotation implements IJSONAble {
     target: Target;
 
     /**
-     * 
-     * @param id 
-     * @param type 
-     * @param motivation 
+     *
+     * @param id
+     * @param type
+     * @param motivation
      */
     constructor(id: string, type: string, motivation: string) {
         this.id = id;
         this.type = type;
         this.motivation = motivation;
+        this.target = new Target();
     }
 
     /**
-     * 
-     * @param target 
+     *
+     * @param target
      */
     setTarget(target: Target) {
         this.target = target;
     }
 
     /**
-     * 
-     * @param body 
+     *
+     * @param body
      */
     setBody(body: Body) {
         this.body = body;

@@ -12,5 +12,5 @@ module.exports = {
         path: path.join(__dirname, '/dist/'),
         filename: 'app.build.js'
     },
-    mode: "development"
+    mode: "production"
 };

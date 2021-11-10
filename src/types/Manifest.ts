@@ -4,12 +4,14 @@ import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
 import IItem from "./interfaces/IItem";
 import Item from "./Item";
+import EnumManifestBehavior from "./EnumManifestBehavior";
 
 export default class Manifest implements IJSONAble {
   id = "";
   readonly type: string = "Manifest";
   label: Label | null;
   items: Item[];
+  behavior?: EnumManifestBehavior[] | EnumManifestBehavior;
 
   /**
    * Construct a new instance of Manifest
@@ -98,6 +100,19 @@ export default class Manifest implements IJSONAble {
    */
   getItemList(): Item[]{
     return this.items;
+  }
+
+  /**
+   *
+   *
+   * @param behavior
+   */
+  setBehavior(behavior: EnumManifestBehavior | EnumManifestBehavior[]){
+    if(!lib.isDefined(this.behavior)){
+      this.behavior = behavior;
+    }else{
+      this.behavior = behavior;
+    }
   }
 
   /**
