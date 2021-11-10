@@ -1,6 +1,6 @@
 import IJSONAble from "./interfaces/IJSONAble";
 import Target from "./Target";
-import AnnotationBody from "./AnnotationBody";
+import Item from "./Item";
 import EnumAnnotationMotivation from "./enums/EnumAnnotationMotivation";
 var lib = require("../lib");
 
@@ -9,13 +9,11 @@ var lib = require("../lib");
  * it is just a convenient type to store methods such as adding and removing child
  * items.
  */
-export default abstract class Annotation implements IJSONAble {
-    [ "@context" ]?: string | string[];
-    id: string;
+export default abstract class Annotation extends Item implements IJSONAble{
     readonly type: string = "Annotation";
     motivation: EnumAnnotationMotivation;
-    abstract body: AnnotationBody;
-    target?: Target;
+    abstract body: any;
+    target?: string;
 
     /**
      *
@@ -23,9 +21,9 @@ export default abstract class Annotation implements IJSONAble {
      * @param type
      * @param motivation
      */
-    constructor(id: string, type: string, motivation: EnumAnnotationMotivation, target?: Target) {
-        this.id = id;
-        this.type = type;
+    constructor(id: string, motivation: EnumAnnotationMotivation, target?: string) {
+        super(id, undefined);
+
         this.motivation = motivation;
 
         if(lib.isDefined(target)){
@@ -37,29 +35,34 @@ export default abstract class Annotation implements IJSONAble {
      *
      * @param target
      */
-    setTarget(target: Target) {
+    setTarget(target: string) {
         this.target = target;
     }
 
-    getTarget(): Target | null{
+    getTarget(): string | null{
       if(lib.isDefined(this.target)){
         return this.target || null;
       }else{
         return null;
       }
     }
+
     /**
      *
      * @param body
      */
-    setBody(body: AnnotationBody) {
-        this.body = body;
+    setBody(body: any) {
+      this.body = body;
+    }
+
+    getBody(): any{
+      return this.body;
     }
 
     /**
      * @return
      */
     toJSONString(): string {
-        return JSON.stringify(this);
+      return JSON.stringify(this);
     }
 }
