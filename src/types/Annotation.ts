@@ -1,6 +1,7 @@
 import IJSONAble from "./interfaces/IJSONAble";
 import Target from "./Target";
 import Body from "./Body";
+import EnumAnnotationMotivation from "./EnumAnnotationMotivation";
 var lib = require("../lib");
 
 /**
@@ -9,15 +10,12 @@ var lib = require("../lib");
  * items.
  */
 export default abstract class Annotation implements IJSONAble {
-
-    //@?
-    context: string = "";
+    [ "@context" ]?: string | string[];
     id: string;
-    readonly type: string;
-    //TODO make enum
-    motivation: string;
+    readonly type: string = "Annotation";
+    motivation: EnumAnnotationMotivation;
     abstract body: Body;
-    target: Target;
+    target?: Target;
 
     /**
      *
@@ -25,11 +23,14 @@ export default abstract class Annotation implements IJSONAble {
      * @param type
      * @param motivation
      */
-    constructor(id: string, type: string, motivation: string) {
+    constructor(id: string, type: string, motivation: EnumAnnotationMotivation, target?: Target) {
         this.id = id;
         this.type = type;
         this.motivation = motivation;
-        this.target = new Target();
+
+        if(lib.isDefined(target)){
+          this.target = target;
+        }
     }
 
     /**
@@ -40,6 +41,13 @@ export default abstract class Annotation implements IJSONAble {
         this.target = target;
     }
 
+    getTarget(): Target | null{
+      if(lib.isDefined(this.target)){
+        return this.target || null;
+      }else{
+        return null;
+      }
+    }
     /**
      *
      * @param body
