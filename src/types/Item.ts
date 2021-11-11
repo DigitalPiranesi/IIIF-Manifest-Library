@@ -8,7 +8,7 @@ var lib = require("../lib");
  * items.
  */
 export default abstract class Item implements IItem, IJSONAble{
-  // Once the URI is set it should not be allowed to be modified.
+  /* Once the URI is set it should not be allowed to be modified. */
   readonly id: string;
 
   /* Once the IIIF type is declared for each item it should not be allowed to be
@@ -26,12 +26,14 @@ export default abstract class Item implements IItem, IJSONAble{
    */
   readonly motivation?: string;
 
+  /* This notation just allows for us to use the `@` symbol at the beginning of a variable name */
   [ "@context" ]?: string | string[];
 
   /**
    * Create an instance of item.
    *
    * @param id The URL for this item.
+   * @param context The context of this item, as a single or array of URLs as strings (optional)
    */
   constructor(id: string, context: string | string[] | undefined){
     this.id = id;
@@ -45,14 +47,20 @@ export default abstract class Item implements IItem, IJSONAble{
   /**
    * Add an item to the array of sub-items.
    *
-   * @param item The item to add to the list.
    * @note This method can be overriden if desired.
+   * @param item The item to add to the list.
    */
   addItem(item: Item): void{
     this.items.push(item);
   }
 
+  /**
+   * Add URL to this item's context (handles array creation if new array).
+   *
+   * @param context A URL string referencing the context file.
+   */
   addContext(context: string){
+    /* This simply creates the property if it doesn't exist yet. */
     if(typeof this["@context"] === "undefined"){
       this["@context"] = context;
       return;
@@ -84,6 +92,11 @@ export default abstract class Item implements IItem, IJSONAble{
     });
   }
 
+  /**
+   * Get all the items attached to this item.
+   *
+   * @return A reference to the array of items.
+   */
   getItems(): Item[]{
     return this.items;
   }

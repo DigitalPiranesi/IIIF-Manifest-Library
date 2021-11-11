@@ -5,7 +5,6 @@ import IJSONAble from "./interfaces/IJSONAble";
 import IItem from "./interfaces/IItem";
 import Item from "./Item";
 import EnumManifestBehavior from "./enums/EnumManifestBehavior";
-import Annotation from "./Annotation";
 
 export default class Manifest implements IJSONAble {
   [ "@context" ]?: string | string[];
@@ -108,9 +107,9 @@ export default class Manifest implements IJSONAble {
   }
 
   /**
+   * Set the behavior of this manifest (accepts an array of values)
    *
-   *
-   * @param behavior
+   * @param behavior The behavior to set.
    */
   setBehavior(behavior: EnumManifestBehavior | EnumManifestBehavior[]){
     if(!lib.isDefined(this.behavior)){

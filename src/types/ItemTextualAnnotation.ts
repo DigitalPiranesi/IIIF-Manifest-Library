@@ -1,8 +1,8 @@
 import IJSONAble from "./interfaces/IJSONAble";
-import Annotation from "./Annotation";
+import ItemAnnotation from "./ItemAnnotation";
 import EnumAnnotationMotivation from "./enums/EnumAnnotationMotivation";
 
-export default class TextualAnnotation extends Annotation {
+export default class ItemTextualAnnotation extends ItemAnnotation {
   body: {
     type: string,
     value: string,

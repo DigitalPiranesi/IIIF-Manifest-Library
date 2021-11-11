@@ -8,15 +8,16 @@ import EnumWebAnnotationMotivation from "./enums/EnumWebAnnotationMotivation";
 export default class ItemWebAnnotation extends Item {
   readonly type: string = "Annotation";
   motivation: EnumWebAnnotationMotivation;
-  target: any; // Target can also be a custom object with all kinds of properties. Let's just leave it as `any` for now
-  //TODO: Optional AnnotationBody
+  target: string;
   body?: any;
 
   /**
+   * Create a new instance of a W3-compatible web annotation.
    *
-   * @param id
-   * @param motivation
-   * @param target
+   * @param id The id of this annotation
+   * @param motivation The motivation of this annotation
+   * @param target The target of this annotation (typically a canvas/annotation-page)
+   * @param context (Optional) specification of additional contexts (includes W3 Web Annotation context by default).
    */
   constructor(id: string, motivation: EnumWebAnnotationMotivation, target: string, context?: string | string[]) {
     super(id, context);
@@ -27,24 +28,29 @@ export default class ItemWebAnnotation extends Item {
   }
 
   /**
+   * Set the target of this annotation
    *
-   * @param target
+   * @param target The ID of a target as a string.
    */
-  setTarget(target: any){
+  setTarget(target: string){
     this.target = target;
   }
 
   /**
+   * Set the body of the annotation forcefully.
+   * NOTE: This should be done via implementation, but for simplicity can be done
+   * programatically here.
    *
-   * @param body
+   * @param body The object to which to set the body equal.
    */
-  addBody(body: any): void{
+  setBody(body: any): void{
     this.body = body;
   }
 
   /**
+   * Remove the body of the annotation.
    *
-   * @return
+   * @return True if successful, false if it never existed to start with.
    */
   removeBody(): boolean{
     if(typeof this.body !== "undefined"){
@@ -55,10 +61,6 @@ export default class ItemWebAnnotation extends Item {
     return false;
   }
 
-  /**
-   *
-   * @return
-   */
   toJSONString(): string {
     return JSON.stringify(this);
   }

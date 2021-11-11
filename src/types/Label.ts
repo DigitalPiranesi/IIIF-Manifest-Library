@@ -2,17 +2,24 @@ var lib = require("../lib");
 import ILabel from "./interfaces/ILabel";
 
 /**
- * Usage:
+ * Provides the label mapping interface needed to satisfy a manifest's label.
+ * The label uses a map of two-character language codes to arrays of possible
+ * values.
  *
+ * @see Map
+ * @usage
+ * ```
  * var label = new Label();
- *
  * label.addValue('en', ['Hello world!', 'Hi world!']);
  * label.addValue('fr', 'Bonjour, monde!');
+ * ```
  */
 export default class Label{
   languageMap: Map<string, string[]>;
 
   /**
+   * Creates a new instance of label.
+   *
    * @param languageCode The two-character language code for this label
    * @param values Optional, pre-defined values to insert.
    */

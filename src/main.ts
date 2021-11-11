@@ -11,8 +11,8 @@ import ItemWebAnnotationImage from "./types/ItemWebAnnotationImage";
 import ItemAnnotationPage from "./types/ItemAnnotationPage";
 import EnumWebAnnotationMotivation from "./types/enums/EnumWebAnnotationMotivation";
 import EnumAnnotationMotivation from "./types/enums/EnumAnnotationMotivation";
-import TextualAnnotation from "./types/TextualAnnotation";
-import Annotation from "./types/Annotation";
+import ItemTextualAnnotation from "./types/ItemTextualAnnotation";
+import ItemAnnotation from "./types/ItemAnnotation";
 
 var label: Label = new Label();
 var manifest: Manifest = new Manifest(3, "https://piranesi-test.reclaim.hosting/walts-test-book/media/Manifest_TomJerryV2.json");
@@ -22,7 +22,7 @@ var webAnnotationPage: Item = new ItemAnnotationPage("https://piranesi-test.recl
 var annotationPage: Item = new ItemWebAnnotationPage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/page/p2/1");
 
 var image: ItemWebAnnotationImage = new ItemWebAnnotationImage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0001-image", EnumWebAnnotationMotivation.PAINTING, canvas, "https://env-4072537.us.reclaim.cloud/iiif/2/tomjerry.jpeg/full/full/0/default.jpg", 300, 168);
-var textualAnnotation: Annotation = new TextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0002-tag", EnumAnnotationMotivation.COMMENTING, "Hello world!", "en", "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1#xywh=195,105,30,30");
+var textualAnnotation: ItemAnnotation = new ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0002-tag", EnumAnnotationMotivation.COMMENTING, "Hello world!", "en", "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/canvas/p1#xywh=195,105,30,30");
 
 label.addValue("en", ["Hello world!"]);
 label.addValue("fr", ["Bonjour, monde!", "Salut, world!"]);
