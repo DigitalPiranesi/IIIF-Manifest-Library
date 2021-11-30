@@ -14,15 +14,6 @@ gulp.task("typescript", function(){
 });
 
 /*
- * This task is responsible for resolving the dependencies from `require()` and
- * `import` statements and packing it all together into a single, web-compatible
- * Javascript file found in `/dist/app.build.js`.
- */
-gulp.task("webpack", function(){
-    return webpack(webpack_config).pipe(gulp.dest("dist"));
-});
-
-/*
  * This task is responsible for cleaning up old build files and cleaning the
  * builds before starting again.
  */
@@ -31,9 +22,22 @@ gulp.task("build-clean", function(){
 });
 
 /*
+ * This task is responsible for resolving the dependencies from `require()` and
+ * `import` statements and packing it all together into a single, web-compatible
+ * Javascript file found in `/dist/app.build.js`.
+ */
+gulp.task("target-web", function(){
+    return webpack(webpack_config).pipe(gulp.dest("dist"));
+});
+
+gulp.task("target-node", gulp.series("build-clean", "typescript"), function() {
+    return gulp.src(["./build"]).pipe(gulp.dest("dist"));
+});
+
+/*
  * This task is responsible for running all the default tasks necessary to build,
  * compile, and pack the application.
  */
-gulp.task("default", gulp.series("build-clean", "typescript", "webpack"), function() {
+gulp.task("default", gulp.series("build-clean", "typescript", "target-web"), function() {
   console.log("Done");
 });

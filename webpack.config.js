@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 module.exports = {
     entry: {
-        main: './build/main.js',
+        main: './build/index.js',
     },
     resolve: {
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".js"]

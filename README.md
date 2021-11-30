@@ -31,7 +31,7 @@ node dist/main.js
 ```
 
 ## Testing
-There are a few [tests](./test) built into the development lifestyle. These are automatically run on each push to the repository and you can see the output in the badge above. If you wish to test on your own, simply run:
+There are a few [tests](./test) built into the development lifecycle. These are automatically run on each push to the repository and you can see the output in the badge above. If you wish to test on your own, simply run:
 
 ```bash
 npm test

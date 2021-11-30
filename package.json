@@ -1,9 +1,10 @@
 {
-  "name": "manifest_generator",
-  "version": "0.0.1",
+  "name": "iiif-manifest-generator",
+  "version": "1.0.1",
   "description": "A Javascript/HTML IIIF-compiant manifest generator.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
+    "build": "gulp",
     "start:gulp": "npm-run-all gulp start",
     "gulp": "gulp",
     "start": "node ./dist/main.js",
