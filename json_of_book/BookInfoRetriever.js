@@ -41,7 +41,7 @@ let IN_EASY_TERMS = {
   DESCRIPTION: "http://purl.org/dc/terms/description",
   HAS_VERSION: "http://purl.org/dc/terms/hasVersion",
   IS_LIVE: "http://scalar.usc.edu/2012/01/scalar-ns#isLive",
-  IS_VERSION_OF: "http://purl.org/dc/terms/isVersionOf"
+  IS_VERSION_OF: "http://purl.org/dc/terms/isVersionOf",
   TYPE: "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
   TITLE: "http://purl.org/dc/terms/title",
   URN: "http://scalar.usc.edu/2012/01/scalar-ns#urn",
@@ -53,7 +53,7 @@ let IN_EASY_TERMS = {
 let RDF_SYNTAX_TYPES = {
   COMPOSITE: "http://scalar.usc.edu/2012/01/scalar-ns#Composite",
   VERSION: "http://scalar.usc.edu/2012/01/scalar-ns#Version",
-  MEDIA: "http://scalar.usc.edu/2012/01/scalar-ns#Media"
+  MEDIA: "http://scalar.usc.edu/2012/01/scalar-ns#Media",
   INVALID_TYPE: -1
 };
 
@@ -132,3 +132,8 @@ function rdfjson_get_created_date_as_date_object(obj){
 
   return date;
 }
+
+
+//Test output
+console.log(rdfjson_get_title(config)); //-1
+console.log(rdfjson_get_type(config)); //-1
