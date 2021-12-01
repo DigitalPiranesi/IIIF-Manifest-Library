@@ -135,5 +135,7 @@ function rdfjson_get_created_date_as_date_object(obj){
 
 
 //Test output
-console.log(rdfjson_get_title(config["http://piranesi-test.reclaim.hosting/without-mirador/frontis-piece.1"])); //-1
-console.log(rdfjson_get_type(config["http://piranesi-test.reclaim.hosting/without-mirador/this-is-a-description"])); //-1
+//const test = JSON.parse(config)
+for(var i in config) {
+  console.log(i); //prints out keys
+}
