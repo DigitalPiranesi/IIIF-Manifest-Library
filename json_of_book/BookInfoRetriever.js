@@ -42,7 +42,7 @@ let IN_EASY_TERMS = {
   HAS_VERSION: "http://purl.org/dc/terms/hasVersion",
   IS_LIVE: "http://scalar.usc.edu/2012/01/scalar-ns#isLive",
   IS_VERSION_OF: "http://purl.org/dc/terms/isVersionOf",
-  TYPE: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  TYPE: "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
   TITLE: "http://purl.org/dc/terms/title",
   URN: "http://scalar.usc.edu/2012/01/scalar-ns#urn",
   VERSION: "http://scalar.usc.edu/2012/01/scalar-ns#version",
