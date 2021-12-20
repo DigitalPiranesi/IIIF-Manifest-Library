@@ -42,7 +42,7 @@ let IN_EASY_TERMS = {
   HAS_VERSION: "http://purl.org/dc/terms/hasVersion",
   IS_LIVE: "http://scalar.usc.edu/2012/01/scalar-ns#isLive",
   IS_VERSION_OF: "http://purl.org/dc/terms/isVersionOf",
-  TYPE: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+  TYPE: "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
   TITLE: "http://purl.org/dc/terms/title",
   URN: "http://scalar.usc.edu/2012/01/scalar-ns#urn",
   VERSION: "http://scalar.usc.edu/2012/01/scalar-ns#version",
@@ -133,9 +133,24 @@ function rdfjson_get_created_date_as_date_object(obj){
   return date;
 }
 
-
-//Test output
-//const test = JSON.parse(config)
-for(var i in config) {
-  console.log(i); //prints out keys
+function rdfjson_get_annotation(annotation) {
+  const urlPath = annotation.split("/"); //Splits URL into path segments
+  annotation = urlPath[urlPath.length-1]; //Accesses last element which is the annotation
+  annotation = annotation.replace(/-/g, " ") //Replaces all dashes in string with a space
+  annotation = annotation.charAt(0).toUpperCase() + annotation.slice(1); //Changes the first character in the annotation to capital letter
+  return annotation;
 }
+
+//Obtaining annotation
+var annotation;
+count = 0;
+for(var i in config) {
+  if(count == 4) {
+    annotation = i.toString();
+    break;
+  }
+  count++;
+}
+annotation = rdfjson_get_annotation(annotation);
+console.log(annotation);
+
