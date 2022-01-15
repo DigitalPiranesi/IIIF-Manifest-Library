@@ -14,5 +14,35 @@ import IItem from "./types/interfaces/IItem";
 import IJSONAble from "./types/interfaces/IJSONAble";
 import ILabel from "./types/interfaces/ILabel";
 
-var IIIF = {Item: Item, ItemAnnotation: ItemAnnotation, ItemAnnotationPage: ItemAnnotationPage,
-  ItemCanvas: ItemCanvas, ItemTextualAnnotation: ItemTextualAnnotation, ItemWebAnnotation, ItemWebAnnotationImage, Label, Manifest, EnumAnnotationMotivation, EnumWebAnnotationMotivation, EnumManifestBehavior, IItem, IJSONAble, ILabel};
+var context: any = window || {};
+
+export {
+  Item,
+  ItemAnnotation,
+  ItemAnnotationPage,
+  ItemCanvas,
+  ItemTextualAnnotation,
+  ItemWebAnnotation,
+  ItemWebAnnotationImage,
+  Label,
+  Manifest,
+  EnumAnnotationMotivation,
+  EnumWebAnnotationMotivation,
+  EnumManifestBehavior
+};
+
+/*
+context["IIIF"] = {
+  Item: Item,
+  ItemAnnotation: ItemAnnotation,
+  ItemAnnotationPage: ItemAnnotationPage,
+  ItemCanvas: ItemCanvas,
+  ItemTextualAnnotation: ItemTextualAnnotation,
+  ItemWebAnnotation: ItemWebAnnotation,
+  ItemWebAnnotationImage: ItemWebAnnotationImage,
+  Label: Label,
+  Manifest: Manifest,
+  EnumAnnotationMotivation: EnumAnnotationMotivation,
+  EnumWebAnnotationMotivation: EnumWebAnnotationMotivation,
+  EnumManifestBehavior: EnumManifestBehavior
+};*/

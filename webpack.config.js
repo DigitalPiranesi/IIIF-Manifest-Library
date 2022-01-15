@@ -10,7 +10,8 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, '/dist/'),
-        filename: 'app.build.js'
+        filename: 'app.build.js',
+        library: 'I3'
     },
     mode: "production"
 };

@@ -15,26 +15,14 @@ npm install
 ```
 
 ## Building
-After installing the dependencies, simply run the following command to build the application.
-Building is managed by Gulp which runs all the necessary tasks. The resulting
-build can be found in the ```dist``` folder.
-
+### 1. Building for the web
 ```bash
 gulp
 ```
 
-## Running
-The application can be run with:
-
+### 2. Building as a NodeJS library
 ```bash
-node dist/main.js
-```
-
-## Testing
-There are a few [tests](./test) built into the development lifecycle. These are automatically run on each push to the repository and you can see the output in the badge above. If you wish to test on your own, simply run:
-
-```bash
-npm test
+gulp target-node
 ```
 
 ## Documentation
@@ -42,11 +30,8 @@ Documentation is included as comments on each appropriate method and class decla
 
 ### Useful Reading
 * [TypeScript handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
-* [TypeScript type notation](https://www.tutorialsteacher.com/typescript/type-annotation)
-* [TypeScript classes](https://www.typescriptlang.org/docs/handbook/2/classes.html)
-  * [Abstract classes](https://www.tutorialsteacher.com/typescript/abstract-class)
-  * [Interfaces](https://www.tutorialsteacher.com/typescript/typescript-interface)
-* [TypeScript object types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+* [Specification for serialization & RDF JSON](https://www.w3.org/TR/rdf-json/#section-serialization)
+* [W3 Annotation Specification](https://www.w3.org/TR/annotation-model)
 
 ## Contributing/Developer Notes
 See weekly issue in [issues](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues) for the checklist of the week.
@@ -60,6 +45,3 @@ If you have any suggestions or contributions to make, please do! Here is a simpl
 5. Open a Pull Request
 
 If there are any issues creating branches or pushing to the repository, please open an [issue](https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues).
-
-### Notes on Libraries
-This software uses [NodeJS](https://www.nodejs.org) and [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html), both of which are free and open-source. While other languages may be used, it is suggested to at least be familiar with vanilla Javascript and Typescript, as well as the NodeJS built-in libraries.
