@@ -31,7 +31,8 @@ let IN_EASY_TERMS = {
   VERSION_NUMBER: "http://open.vocab.org/terms/versionnumber",
   WAS_ATTRIBUTED_TO: "http://www.w3.org/ns/prov#wasAttributedTo",
   HAS_TARGET: "http://www.openannotation.org/ns/hasTarget",
-  HAS_BODY: "http://www.openannotation/ns/hasBody"
+  HAS_BODY: "http://www.openannotation.org/ns/hasBody",
+  CONTENT: "http://rdfs.org/sioc/ns#content"
 };
 
 let RDF_SYNTAX_TYPES = {
@@ -56,6 +57,7 @@ function is_date(a){
  */
 function rdfjson_get_type(obj){
   if(!is_defined(obj)){
+    console.log("    not defined");
     return RDF_SYNTAX_TYPES.INVALID_TYPE;
   }
 
@@ -78,6 +80,44 @@ function rdfjson_is_live(obj){
   }
 
   return live;
+}
+
+function rdfjson_get_content(obj){
+  if(!is_defined(obj) || !is_defined(obj[IN_EASY_TERMS.IS_LIVE])){
+    return -1;
+  }
+
+  return obj[IN_EAST_TERMS.CONTENT][0].value;
+}
+
+/**
+ * Get a parsed target object.
+ *
+ * @param obj The object to get the target from
+ * @return An object formatted with properties: `base_uri` and `xywh`.
+ */
+function rdfjson_get_target(obj){
+  if(!is_defined(obj) || !is_defined(obj[IN_EASY_TERMS.HAS_TARGET])){
+    return -1;
+  }
+
+  var raw_string = obj[IN_EASY_TERMS.HAS_TARGET][0].value;
+  var array_of_strings = raw_string.split("#");
+  var uri = array_of_strings[0];
+  var xywh = array_of_strings[1].split("=")[1];
+
+  return {
+    base_uri: uri,
+    xywh: xywh
+  };
+}
+
+function rdfjson_get_version(obj){
+  if(!is_defined(obj) || !is_defined(obj[IN_EASY_TERMS.VERSION])){
+    return -1;
+  }
+
+  return obj[IN_EASY_TERMS.VERSION][0].value;
 }
 
 function rdfjson_get_title(obj){
@@ -122,6 +162,13 @@ function rdfjson_get_created_date_as_date_object(obj){
   return date;
 }
 
+function rdfjson_is_version_of(obj){
+  if(!is_defined(obj) || !is_defined(obj[IN_EASY_TERMS.IS_VERSION_OF])){
+    return -1;
+  }
+
+  return obj[IN_EASY_TERMS.IS_VERSION_OF][0].value;
+}
 
 // TODO: Fix
 function rdfjson_get_annotation(annotation) {
@@ -185,13 +232,164 @@ function rdfjson_get_all_annotations_related_to_url(url, obj){
   }
 }
 
+
+
 (function(){
-  rdfjson_get_all_nodes_and_child_nodes_from_url("https://scalar.usc.edu/works/piranesidigitalproject/media/1/4-of-v16-map", config);
-  rdfjson_get_all_annotations_related_to_url("https://scalar.usc.edu/works/piranesidigitalproject/column-of-trajan", config);
+  indentLevel = 0;
+
+  var media_pages = [];
+  var composites = [];
+  var annotations = [];
+  var versions = [];
+
+  /*
+   * Parsed format:
+   *
+   * {
+   *   title,
+   *   content,
+   *   xywh,
+   *   uri,
+   * }
+   */
+  var parsed_annotations = [];
+
+  for(const item in config){
+    switch(rdfjson_get_type(config[item])){
+      case RDF_SYNTAX_TYPES.MEDIA:
+        media_pages.push(item);
+        break;
+      case RDF_SYNTAX_TYPES.ANNOTATION:
+        annotations.push(item);
+        break;
+      case RDF_SYNTAX_TYPES.COMPOSITE:
+        composites.push(item);
+        break;
+      case RDF_SYNTAX_TYPES.VERSION:
+        versions.push(item);
+        break;
+      default:
+        console.log("  Unknown type: " + rdfjson_get_type(item) + ". Please review: " + item);
+    }
+  }
+
+  console.log("Media: " + JSON.stringify(media_pages));
+  console.log("Composites: " + JSON.stringify(composites));
+  console.log("Annotations: " + JSON.stringify(annotations));
+  console.log("Versions: " + JSON.stringify(versions));
+
+
+  /*
+   * 1. Find the `Media` page
+   * 2. Check for it's current version
+   * 3. Find the version within the file
+   *     a. `Type` is Version
+   *     b. `isVersionOf` is `Media` page uri
+   * 4. Find annotations
+   *     a. `Type` is Annotation
+   *     b. Check for correct target (uri and version from step 3; avoids version conflicts)
+   *     c. Find the "composite" body with the `hasBody` property
+   *         I. Get title from `title` property
+   *         II. Get content from `content` property
+   *     d. Position using the `hasTarget` parsed string
+   */
+  for(const media_page_uri of media_pages){
+    // 1
+    if(!rdfjson_is_live(config[media_page_uri])){
+      continue;
+    }
+
+    // 2
+    var version_string = rdfjson_get_version(config[media_page_uri]);
+
+    // 3a
+    if(version_string < 0 || versions.indexOf(version_string) < 0){
+      console.log("Cannot parse version. Skipping.");
+      continue;
+    }
+
+    var version = config[version_string];
+
+    // 3b
+    if(rdfjson_is_version_of(config[version_string]) != media_page_uri){
+      continue;
+    }
+
+    // 4, 4a
+    for(const anno of annotations){
+      // 4b
+      if(!rdfjson_get_target(config[anno]) || rdfjson_get_target(config[anno]).base_uri != version_string){
+        continue;
+      }
+
+      var annotation_body_uri = config[anno][IN_EASY_TERMS.HAS_BODY][0].value;
+
+      var annotation_title = rdfjson_get_title(config[annotation_body_uri]);
+      var annotation_content = rdfjson_get_content(config[annotation_body_uri]);
+      var target = rdfjson_get_target(config[anno]);
+
+      parsed_annotations.push({
+        title: annotation_title || "",
+        content: annotation_content || "",
+        xywh: target.xywh || "",
+        uri: target.base_uri
+      });
+    }
+  }
+
+  console.log("\n\nWas able to identify " + parsed_annotations.length + " annotations.");
+
+  /*
+  for(const item in config){
+    indentLevel = 0;
+
+    // 1. Find `Media` pages
+    if(rdfjson_get_type(item) == RDF_SYNTAX_TYPES.MEDIA){
+      console.log(indentLevel + "Located Media item: " + item);
+
+      // 2. Check if its the current version
+      if(rdfjson_is_live(item)){
+        indentLevel += 2;
+
+        // 3. Find the version within the file:
+        var version_string = rdfjson_get_version(item);
+
+        if(version_string < 0){
+          console.error(indentLevel + "Cannot parse version. Skipping.");
+          continue;
+        }
+
+        var version = config[version_string];
+
+        // a) type is version, b) isVersionOf is `Media`
+        if(rdfjson_get_type(version) != RDF_SYNTAX_TYPES.VERSION || rdfjson_is_version_of(version) != item){
+          console.error(indentLevel + "Corrupted version signature. Exiting early.");
+          continue;
+        }
+
+        // 4. Find annotations
+        // TODO: I know this is another loop within a loop. Let's figure out a faster
+        // way of doing this, I guess!
+        // O(n ^ 2) time, right?
+        indentLevel += 2;
+        for(const anno in config){
+          if(rdfjson_get_type(anno) != RDF_SYNTAX_TYPES.ANNOTATION){
+            continue;
+          }
+
+          // Target not found. Exit early.
+          if(rdfjson_get_target(anno) < 0 || rdfjson_get_target(anno).uri != version){
+            continue;
+          }
+
+
+        }
+      }
+    }
+  }*/
 })();
 
-/*
- * Todo: fix
+/* Todo: fix
 
 //Obtaining annotation
 var annotation;
