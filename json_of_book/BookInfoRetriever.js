@@ -59,6 +59,14 @@ class RDFDecoder {
     this.obj = obj;
   }
 
+  is_defined(a){
+    return (typeof a !== "undefined");
+  }
+
+  is_date(a){
+    return (Object.prototype.toString.call(a) === '[object Date]');
+  }
+
   /**
    * Get the type of the child element
    *
@@ -67,12 +75,12 @@ class RDFDecoder {
    * @see RDF_SYNTAX_TYPES
    */
   get_type(child) {
-    if (!is_defined(this.obj[child])) {
+    if (!this.is_defined(this.obj[child])) {
       console.log("Child: " + child + " not defined");
       return RDF_SYNTAX_TYPES.INVALID_TYPE;
     }
 
-    if (!is_defined(this.obj[child][IN_EASY_TERMS.TYPE])) {
+    if (!this.is_defined(this.obj[child][IN_EASY_TERMS.TYPE])) {
       return RDF_SYNTAX_TYPES.INVALID_TYPE;
     }
 
@@ -86,7 +94,7 @@ class RDFDecoder {
    * @return A positive integer if live, otherwise -1
    */
   is_live(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.IS_LIVE])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.IS_LIVE])) {
       return -1;
     }
 
@@ -107,7 +115,7 @@ class RDFDecoder {
    * @return An object containing two properties: `base_uri` and `xywh` which is the target's uri and coordinates respectively.
    */
   get_target(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.HAS_TARGET])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.HAS_TARGET])) {
       return -1;
     }
 
@@ -129,7 +137,7 @@ class RDFDecoder {
    * @return A string uri of the version.
    */
   get_version(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.VERSION])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.VERSION])) {
       return -1;
     }
 
@@ -144,7 +152,7 @@ class RDFDecoder {
    * @return A string containing the content.
    */
   get_content(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.IS_LIVE])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.IS_LIVE])) {
       return -1;
     }
 
@@ -158,7 +166,7 @@ class RDFDecoder {
    * @return A string of the title
    */
   get_title(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.TITLE])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.TITLE])) {
       return -1;
     }
 
@@ -168,10 +176,11 @@ class RDFDecoder {
   /**
    * Get the description of an element.
    *
-   * @param child
+   * @param child The uri of which to fetch the title.
+   * @return A string of the description.
    */
   get_description(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.DESCRIPTION])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.DESCRIPTION])) {
       return -1;
     }
 
@@ -179,7 +188,7 @@ class RDFDecoder {
   }
 
   get_artstor_url(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.ARTSTOR_URL])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.ARTSTOR_URL])) {
       return -1;
     }
 
@@ -187,7 +196,7 @@ class RDFDecoder {
   }
 
   get_created_date_as_date_string(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.CREATED])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.CREATED])) {
       return -1;
     }
 
@@ -205,13 +214,30 @@ class RDFDecoder {
   }
 
   is_version_of(child) {
-    if (!is_defined(this.obj[child]) || !is_defined(this.obj[child][IN_EASY_TERMS.IS_VERSION_OF])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.IS_VERSION_OF])) {
       return -1;
     }
 
     return this.obj[child][IN_EASY_TERMS.IS_VERSION_OF][0].value;
   }
 
+  /**
+   * Decode the provided object into arrays of different structures:
+   *
+   * {
+   *     media_pages        - An array of uris with the Media type
+   *     composites         - An array of uris with the Composite type
+   *     annotations        - An array of uris with the Annotation type
+   *     versions           - An array of uris with the Version type
+   *     parsed_annotations - An array of parsed annotations.
+   *         {
+   *             title
+   *             content
+   *             xywh
+   *             uri
+   *         }
+   * }
+   */
   decode() {
     var config = this.obj;
     var media_pages = [];
@@ -247,13 +273,14 @@ class RDFDecoder {
           break;
         default:
           console.log("  Unknown type: " + this.get_type(item) + ". Please review: " + item);
+          break;
       }
     }
 
-    console.log("Media: " + JSON.stringify(media_pages));
+    /*console.log("Media: " + JSON.stringify(media_pages));
     console.log("Composites: " + JSON.stringify(composites));
     console.log("Annotations: " + JSON.stringify(annotations));
-    console.log("Versions: " + JSON.stringify(versions));
+    console.log("Versions: " + JSON.stringify(versions));*/
 
     /*
      * 1. Find the `Media` page
@@ -325,3 +352,26 @@ class RDFDecoder {
     }
   }
 }
+
+(function(){
+  const I3 = require("../build/index");
+
+  var decoder = new RDFDecoder(config);
+  var arrays = decoder.decode();
+
+  var packaged_pages = [];
+
+  for(const media_page of arrays["media_pages"]){
+      if(media_page != null){
+        for(const annotation of arrays["parsed_annotations"]){
+          // TODO: Instead of comparing the annotation.uri it needs to be trimmed of the version.
+          if(annotation.uri == media_page){
+            console.log("Found annotation for page: " + media_page);
+            packaged_pages.push({uri: media_page, annotation: annotation});
+          }
+        }
+      }
+  }
+
+  console.log(JSON.stringify(packaged_pages));
+})();
