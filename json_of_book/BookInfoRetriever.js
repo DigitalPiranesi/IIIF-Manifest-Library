@@ -152,11 +152,11 @@ class RDFDecoder {
    * @return A string containing the content.
    */
   get_content(child) {
-    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.IS_LIVE])) {
+    if (!this.is_defined(this.obj[child]) || !this.is_defined(this.obj[child][IN_EASY_TERMS.CONTENT])) {
       return -1;
     }
 
-    return this.obj[child][IN_EAST_TERMS.CONTENT][0].value;
+    return this.obj[child][IN_EASY_TERMS.CONTENT][0].value;
   }
 
   /**
@@ -361,17 +361,5 @@ class RDFDecoder {
 
   var packaged_pages = [];
 
-  for(const media_page of arrays["media_pages"]){
-      if(media_page != null){
-        for(const annotation of arrays["parsed_annotations"]){
-          // TODO: Instead of comparing the annotation.uri it needs to be trimmed of the version.
-          if(annotation.uri == media_page){
-            console.log("Found annotation for page: " + media_page);
-            packaged_pages.push({uri: media_page, annotation: annotation});
-          }
-        }
-      }
-  }
-
-  console.log(JSON.stringify(packaged_pages));
+  console.log(JSON.parse(JSON.stringify(arrays.parsed_annotations)));
 })();
