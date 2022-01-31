@@ -7,13 +7,31 @@
  * containing the JSON data.
  *
  * The result of this is an object containing multiple arrays which can be
- * further processed to construct any format you'd like!
+ * further processed to construct any format you'd like.
+ *
+ * The function `decode` returns an object with the following properties:
+ *    - media_pages - Contains an array of the RDFJSON entries with the media page type
+ *    - composites  - Contains an array of the RDFJSON entries with the composite type
+ *    - annotations - Contains an array of the RDFJSON entries with the annotation type
+ *    - versions    - Contains an array of the RDFJSON entries with the version type
+ *    - parsed_annotations - Contains an array of objects with the following format:
+ *           {
+ *               title     - The title of the annotation
+ *               content   - The content of the annotation
+ *               xywh      - The coordinates of the annotation
+ *               uri       - The uri of the page which the annotation belongs on.
+ *                           Note that this URI is a versioned string, including
+ *                           the period and version number
+ *           }
  *
  * Usage:
  *
  * var decoder = new RDFDecoder({...});
  * var arrays = decoder.decode();
+ * var parsed_annotations = arrays.parsed_annotations;
  *
+ * // Now, parsed_annotations contains an array of the annotations in the format
+ * // above.
  */
 const fs = require('fs');
 const config = require('./digital_piranesi_sample_500.json');
@@ -53,12 +71,18 @@ class RDFDecoder {
   /**
    * Constructs a new RDFJSON decoder
    *
-   * @param obj A JavaScript object (not string) that contains the RDFJSON
+   * @param obj A JavaScript object (not string) that contains the RDFJSON.
    */
   constructor(obj) {
     this.obj = obj;
   }
 
+  /**
+   * Determine if a specific object/property is defined
+   *
+   * @param a The object to check
+   * @return True if the object is defined according to a type check.
+   */
   is_defined(a){
     return (typeof a !== "undefined");
   }
@@ -110,6 +134,10 @@ class RDFDecoder {
   /**
    * Get the target of an element.
    *
+   * In the case of RDFJSON, the target is similar to the IIIF target idea.
+   * The target will be a URI pointing to a version of a page, with a hashtag
+   * followed by the x,y coordinates and the width and height of the box.
+   *
    * @note There are no null-checks for the return values
    * @param child The uri of which to fetch the target
    * @return An object containing two properties: `base_uri` and `xywh` which is the target's uri and coordinates respectively.
@@ -132,6 +160,12 @@ class RDFDecoder {
 
   /**
    * Get the version (uri) of an element.
+   *
+   * In RDFJSON, versions are noted by a period, followed by the version number
+   * on the URI. For example, the third version of "digitalpiranesi.org/test_page"
+   * is "digitalpiranesi.org/test_page.3"
+   *
+   * This method will return the full URI version string as above, not the number.
    *
    * @param child The uri of which to fetch the version uri
    * @return A string uri of the version.
