@@ -404,7 +404,7 @@ class RDFDecoder {
   var webannopage = new I3.ItemWebAnnotationPage("http://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p1/1");
   var annopage = new I3.ItemAnnotationPage("https://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p2/1")
 
-  var webanno = new I3.ItemWebAnnotationImage("https://piranesi-test.reclaim.hosting/walts-test-book/media/pantheon/annotation/p0001-image", "painting", canvas, "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg", 17711, 12932);
+  var webanno = new I3.ItemWebAnnotationImage("https://piranesi-test.reclaim.hosting/walts-test-book/media/pantheon/annotation/p0001-image", "painting", canvas, "https://env-4072537.us.reclaim.cloud/iiif/2/pantheon.jpg/full/full/0/default.jpg", 17711, 12932);
   webanno.addContext("http://iiif.io/api/presentation/3/context.json");
 
   manifest.addLabel(label);
