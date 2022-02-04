@@ -25,7 +25,7 @@
               "motivation": "painting",
               "target": "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1",
               "body": {
-                "id": "https://env-4072537.us.reclaim.cloud/iiif/2/pantheon.jpg/full/full/0/default.jpg",
+                "id": "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg",
                 "type": "Image",
                 "format": "image/jpeg",
                 "height": 12932,
@@ -39,7 +39,70 @@
       "type": "Canvas",
       "width": 17711,
       "height": 12932,
-      "annotations": []
+      "annotations": [
+        {
+          "id": "https://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p2/1",
+          "items": [
+            {
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-1039",
+              "items": [],
+              "type": "Annotation",
+              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "motivation": "commenting",
+              "target": "canvas1#69.75%,34%,250,250",
+              "body": {
+                "type": "TextualBody",
+                "value": "1. Pantheon fabbricato da Marco Agrippa oggi Santa Maria ad Martyres",
+                "language": "en",
+                "format": "text/html"
+              }
+            },
+            {
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-1040",
+              "items": [],
+              "type": "Annotation",
+              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "motivation": "commenting",
+              "target": "canvas1#38.7%,38.64%,250,250",
+              "body": {
+                "type": "TextualBody",
+                "value": "2. Fontana con Guglia Egiziaca architettura di Filippo Barigioni.",
+                "language": "en",
+                "format": "text/html"
+              }
+            },
+            {
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-1041",
+              "items": [],
+              "type": "Annotation",
+              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "motivation": "commenting",
+              "target": "canvas1#26.8%,64.7%,250,250",
+              "body": {
+                "type": "TextualBody",
+                "value": "3. Pescaria",
+                "language": "en",
+                "format": "text/html"
+              }
+            },
+            {
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-1042",
+              "items": [],
+              "type": "Annotation",
+              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "motivation": "commenting",
+              "target": "canvas1#92.35%,15%,250,250",
+              "body": {
+                "type": "TextualBody",
+                "value": "4. Palazzo Crescenzi",
+                "language": "en",
+                "format": "text/html"
+              }
+            }
+          ],
+          "type": "AnnotationPage"
+        }
+      ]
     }
   ]
 }

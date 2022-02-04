@@ -402,7 +402,7 @@ class RDFDecoder {
   var canvas = new I3.ItemCanvas("http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1", 17711, 12932);
   var label = new I3.Label("en", ["Pantheon by Piranesi"]);
   var webannopage = new I3.ItemWebAnnotationPage("http://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p1/1");
-
+  var annopage = new I3.ItemAnnotationPage("https://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p2/1")
 
   var webanno = new I3.ItemWebAnnotationImage("https://piranesi-test.reclaim.hosting/walts-test-book/media/pantheon/annotation/p0001-image", "painting", canvas, "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg", 17711, 12932);
   webanno.addContext("http://iiif.io/api/presentation/3/context.json");
@@ -411,20 +411,27 @@ class RDFDecoder {
   webannopage.addItem(webanno);
   canvas.addItem(webannopage);
   manifest.addItem(canvas);
+  canvas.addAnnotationPage(annopage);
 
   // Fetch annotation
   var annotations = [];
+  var i = 0;
+
   for(const anno of arrays.parsed_annotations){
+    i++;
     // If annotation is what we are looking for using target.uri
     // {
     //  uri, base_uri, title, xywh, content
     // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
-      var textualAnnotation = new I3.ItemTextualAnnotation("tomandjerry", "commenting", anno.title + " " + anno.content, "en", "canvas1#" + anno.xywh);
+      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "canvas1#" + anno.xywh);
 
       console.log(textualAnnotation);
+      annopage.addItem(textualAnnotation);
     }
   }
 
   console.log(manifest.toJSONString());
+
+
 })();
