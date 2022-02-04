@@ -367,10 +367,18 @@ class RDFDecoder {
         var annotation_content = this.get_content(annotation_body_uri);
         var target = this.get_target(anno);
 
+        var xywh = {
+          x: parseFloat(target.xywh.split(",")[0]) / 100,
+          y: parseFloat(target.xywh.split(",")[1]) / 100,
+          w: target.xywh.split(",")[2],
+          h: target.xywh.split(",")[3]
+        };
+
         parsed_annotations.push({
           title: annotation_title || "",
           content: annotation_content || "",
           xywh: target.xywh || "",
+          xywh1: xywh,
           uri: target.uri
         });
       }
@@ -424,7 +432,8 @@ class RDFDecoder {
     //  uri, base_uri, title, xywh, content
     // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
-      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1#xywh=" + anno.xywh);
+      // TODO: FIX THIS MESS
+      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1#xywh=" + (anno.xywh1.x * 17711) + "," + (anno.xywh1.y * 12932) + "," + (anno.xywh1.w) + "," + (anno.xywh1.h));
 
       console.log(textualAnnotation);
       annopage.addItem(textualAnnotation);
