@@ -424,7 +424,7 @@ class RDFDecoder {
     //  uri, base_uri, title, xywh, content
     // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
-      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "canvas1#" + anno.xywh);
+      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1#xywh=" + anno.xywh);
 
       console.log(textualAnnotation);
       annopage.addItem(textualAnnotation);
