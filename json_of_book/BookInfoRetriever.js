@@ -26,12 +26,12 @@
  *
  * Usage:
  *
- * var decoder = new RDFDecoder({...});
- * var arrays = decoder.decode();
- * var parsed_annotations = arrays.parsed_annotations;
  *
  * // Now, parsed_annotations contains an array of the annotations in the format
  * // above.
+ * var decoder = new RDFDecoder({...});
+ * var arrays = decoder.decode();
+ * var parsed_annotations = arrays.parsed_annotations;
  */
 const fs = require('fs');
 const config = require('./digital_piranesi_sample_500.json');
@@ -149,11 +149,13 @@ class RDFDecoder {
 
     var raw_string = this.obj[child][IN_EASY_TERMS.HAS_TARGET][0].value;
     var array_of_strings = raw_string.split("#");
-    var uri = array_of_strings[0];
+    var base_uri = array_of_strings[0];
+    var uri = base_uri.substring(0, base_uri.length - 2);
     var xywh = array_of_strings[1].split("=")[1];
 
     return {
-      base_uri: uri,
+      base_uri: base_uri,
+      uri: uri,
       xywh: xywh
     };
   }
@@ -369,7 +371,7 @@ class RDFDecoder {
           title: annotation_title || "",
           content: annotation_content || "",
           xywh: target.xywh || "",
-          uri: target.base_uri
+          uri: target.uri
         });
       }
     }
