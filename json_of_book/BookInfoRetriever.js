@@ -406,7 +406,7 @@ class RDFDecoder {
 
   manifest.addLabel(label);
   webannopage.addItem(webanno);
-  canvas.addAnnotationPage(webannopage);
+  canvas.addItem(webannopage);
   manifest.addItem(canvas);
 
   // Fetch annotation
