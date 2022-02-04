@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnumManifestBehavior = exports.EnumWebAnnotationMotivation = exports.EnumAnnotationMotivation = exports.Manifest = exports.Label = exports.ItemWebAnnotationImage = exports.ItemWebAnnotation = exports.ItemTextualAnnotation = exports.ItemCanvas = exports.ItemAnnotationPage = exports.ItemAnnotation = exports.Item = void 0;
+exports.EnumManifestBehavior = exports.EnumWebAnnotationMotivation = exports.EnumAnnotationMotivation = exports.Manifest = exports.Label = exports.ItemWebAnnotationImage = exports.ItemWebAnnotationPage = exports.ItemWebAnnotation = exports.ItemTextualAnnotation = exports.ItemCanvas = exports.ItemAnnotationPage = exports.ItemAnnotation = exports.Item = void 0;
 var Item_1 = __importDefault(require("./types/Item"));
 exports.Item = Item_1.default;
 var ItemAnnotation_1 = __importDefault(require("./types/ItemAnnotation"));
@@ -16,6 +16,8 @@ var ItemTextualAnnotation_1 = __importDefault(require("./types/ItemTextualAnnota
 exports.ItemTextualAnnotation = ItemTextualAnnotation_1.default;
 var ItemWebAnnotation_1 = __importDefault(require("./types/ItemWebAnnotation"));
 exports.ItemWebAnnotation = ItemWebAnnotation_1.default;
+var ItemWebAnnotationPage_1 = __importDefault(require("./types/ItemWebAnnotationPage"));
+exports.ItemWebAnnotationPage = ItemWebAnnotationPage_1.default;
 var ItemWebAnnotationImage_1 = __importDefault(require("./types/ItemWebAnnotationImage"));
 exports.ItemWebAnnotationImage = ItemWebAnnotationImage_1.default;
 var Label_1 = __importDefault(require("./types/Label"));

@@ -1,0 +1,42 @@
+{
+  "id": "http://digitalpiranesi.org/mastermanifest",
+  "type": "Manifest",
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "label": {
+    "en": [
+      "Pantheon by Piranesi"
+    ]
+  },
+  "items": [
+    {
+      "id": "http://digitalpiranesi.org/canvas/p1",
+      "items": [],
+      "type": "Canvas",
+      "width": 17711,
+      "height": 12932,
+      "annotations": [
+        {
+          "id": "http://digitalpiranesi.org/page/p1/1",
+          "items": [
+            {
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0001-image",
+              "items": [],
+              "type": "Annotation",
+              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "motivation": "painting",
+              "target": "http://digitalpiranesi.org/canvas/p1",
+              "body": {
+                "id": "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "height": 12932,
+                "width": 17711
+              }
+            }
+          ],
+          "type": "AnnotationPage"
+        }
+      ]
+    }
+  ]
+}

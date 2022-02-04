@@ -4,6 +4,7 @@ import ItemAnnotationPage from "./types/ItemAnnotationPage";
 import ItemCanvas from "./types/ItemCanvas";
 import ItemTextualAnnotation from "./types/ItemTextualAnnotation";
 import ItemWebAnnotation from "./types/ItemWebAnnotation";
+import ItemWebAnnotationPage from "./types/ItemWebAnnotationPage";
 import ItemWebAnnotationImage from "./types/ItemWebAnnotationImage";
 import Label from "./types/Label";
 import Manifest from "./types/Manifest";
@@ -21,6 +22,7 @@ export {
   ItemCanvas,
   ItemTextualAnnotation,
   ItemWebAnnotation,
+  ItemWebAnnotationPage,
   ItemWebAnnotationImage,
   Label,
   Manifest,

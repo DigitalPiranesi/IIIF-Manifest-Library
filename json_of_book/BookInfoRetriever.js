@@ -34,7 +34,7 @@
  * var parsed_annotations = arrays.parsed_annotations;
  */
 const fs = require('fs');
-const config = require('./digital_piranesi_sample_500.json');
+const config = require('./digital_piranesi_sample_2500.json');
 
 const IN_EASY_TERMS = {
   ARTSTOR_URL: "http://simile.mit.edu/2003/10/ontologies/artstor#url",
@@ -389,13 +389,39 @@ class RDFDecoder {
   }
 }
 
+// DEMO FUNCTION
+// TODO: Make generic
 (function(){
   const I3 = require("../build/index");
 
   var decoder = new RDFDecoder(config);
   var arrays = decoder.decode();
 
-  var packaged_pages = [];
+  // Create Manifest
+  var manifest = new I3.Manifest(3, "http://digitalpiranesi.org/mastermanifest");
+  var canvas = new I3.ItemCanvas("http://digitalpiranesi.org/canvas/p1", 17711, 12932);
+  var label = new I3.Label("en", ["Pantheon by Piranesi"]);
+  var webannopage = new I3.ItemWebAnnotationPage("http://digitalpiranesi.org/page/p1/1");
+  var webanno = new I3.ItemWebAnnotationImage("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0001-image", "painting", canvas, "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg", 17711, 12932);
 
-  console.log(JSON.parse(JSON.stringify(arrays.parsed_annotations)));
+  manifest.addLabel(label);
+  webannopage.addItem(webanno);
+  canvas.addAnnotationPage(webannopage);
+  manifest.addItem(canvas);
+
+  // Fetch annotation
+  var annotations = [];
+  for(const anno of arrays.parsed_annotations){
+    // If annotation is what we are looking for using target.uri
+    // {
+    //  uri, base_uri, title, xywh, content
+    // }
+    if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
+      var textualAnnotation = new I3.ItemTextualAnnotation("tomandjerry", "commenting", anno.title + " " + anno.content, "en", "canvas1#" + anno.xywh);
+
+      console.log(textualAnnotation);
+    }
+  }
+
+  console.log(manifest.toJSONString());
 })();
