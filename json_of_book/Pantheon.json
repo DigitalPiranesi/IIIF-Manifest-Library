@@ -1,5 +1,5 @@
 {
-  "id": "http://digitalpiranesi.org/mastermanifest",
+  "id": "http://piranesi-test.reclaim.hosting/mirador/media/Pantheon.json?iiif-manifest=1",
   "type": "Manifest",
   "@context": "http://iiif.io/api/presentation/3/context.json",
   "label": {
@@ -9,18 +9,21 @@
   },
   "items": [
     {
-      "id": "http://digitalpiranesi.org/canvas/p1",
+      "id": "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1",
       "items": [
         {
-          "id": "http://digitalpiranesi.org/page/p1/1",
+          "id": "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/page/p1/1",
           "items": [
             {
-              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p0001-image",
+              "id": "https://piranesi-test.reclaim.hosting/walts-test-book/media/pantheon/annotation/p0001-image",
               "items": [],
               "type": "Annotation",
-              "@context": "http://www.w3.org/ns/anno.jsonld",
+              "@context": [
+                "http://www.w3.org/ns/anno.jsonld",
+                "http://iiif.io/api/presentation/3/context.json"
+              ],
               "motivation": "painting",
-              "target": "http://digitalpiranesi.org/canvas/p1",
+              "target": "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1",
               "body": {
                 "id": "https://env-4072537.us.reclai.cloud/iiif/pantheon.jpg/full/full/0/default.jpg",
                 "type": "Image",
