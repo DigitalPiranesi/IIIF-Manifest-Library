@@ -437,12 +437,6 @@ class RDFDecoder {
   }
 }
 
-// DEMO FUNCTION
-// TODO: Make generic
-/*
- * 1. Put some images on canteloupe
- * 2. In Person:
- */
 /**Calculates finalized points for annotations/completes percentage to pixel format
   //@param anno_link is manifest annotation link
   //@param width of image
@@ -450,12 +444,13 @@ class RDFDecoder {
   //@param target is target canvas link
   //@return textualAnnotation
   */
-  textualAnnotation calculate_annotations(anno_link, width, height, target) {
-    x = parseInt(anno_link.xywh * width);
-    y = parseInt(annoy_link.xywh * height);
+function calculate_annotations(anno_link, width, height, target) {
+  x = parseInt(anno_link.xywh * width);
+  y = parseInt(annoy_link.xywh * height);
 
-    return textualAnnotation = new I3.ItemTextualAnnotation(anno_link, "commenting", anno_link.title + " " + anno_link.content, "en", target +x+","+y+","+width+","+height);
-  }
+  return textualAnnotation = new I3.ItemTextualAnnotation(/* TODO: Generate URL from anno_link */, "commenting", anno_link.title + " " + anno_link.content, "en", target +x+","+y+","+width+","+height);
+}
+
 /**
  * Fetches the width and height of an image from the canteloupe server's `info.json` file
  * for that image asynchronously.
@@ -481,7 +476,6 @@ async function getWidthAndHeightDataFromServer(image){
 }
 
 (function(){
-
   const I3 = require("../build/index");
 
   var decoder = new RDFDecoder(config);
@@ -526,17 +520,22 @@ async function getWidthAndHeightDataFromServer(image){
     //  uri, base_uri, title, xywh, content
     // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
-      // TODO: FIX THIS MESS
-      // TODO: parseInt
+      var widthHeight = getWidthAndHeightDataFromServer(image);
 
-      var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1#xywh=" + (anno.xywh1.x * 17711) + "," + (anno.xywh1.y * 12932) + "," + (anno.xywh1.w) + "," + (anno.xywh1.h));
+
+      var textualAnnotation = calculate_annotations(anno, /* TODO: Fetch */, /* TODO: Fetch */, /* TODO: Pass canvas URL */);
 
       console.log(textualAnnotation);
       annopage.addItem(textualAnnotation);
     }
   }
 
-  
+
 
   console.log(manifest.toJSONString());
 })();
+
+
+/*
+ 1.
+*/
