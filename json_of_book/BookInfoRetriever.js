@@ -35,6 +35,7 @@
  */
 const fs = require('fs');
 const config = require('./digital_piranesi_sample_2500.json');
+const XMLHttpRequest = require('xhr2');
 
 const IN_EASY_TERMS = {
   ARTSTOR_URL: "http://simile.mit.edu/2003/10/ontologies/artstor#url",
@@ -62,6 +63,44 @@ const RDF_SYNTAX_TYPES = {
   MEDIA: "http://scalar.usc.edu/2012/01/scalar-ns#Media",
   ANNOTATION: "http://www.openannotation.org/ns/Annotation",
   INVALID_TYPE: -1
+};
+
+const request = function(method, url, options){
+  return new Promise(function(resolve, reject){
+    var request = new XMLHttpRequest();
+
+    request.open(method, url);
+    request.onload = function(){
+      if(request.status >= 200 && request.status < 300){
+        resolve(request.response);
+      }else{
+        reject({
+          status: request.status,
+          statusText: request.statusText
+        });
+      }
+    };
+    request.onerror = function(){
+      reject({
+        status: request.status,
+        statusText: request.statusText
+      });
+    };
+
+    if(options.headers){
+      Object.keys(options.headers).forEach(function(key){
+        request.setRequestHeader(key, options.headers[key]);
+      });
+    }
+
+    if(options.params){
+      console.log(JSON.stringify(options.params));
+      request.setRequestHeader("Content-type", "application/json");
+      request.send(JSON.stringify(options.params));
+    }else{
+      request.send();
+    }
+  });
 };
 
 /**
@@ -398,13 +437,40 @@ class RDFDecoder {
   }
 }
 
+
 // DEMO FUNCTION
 // TODO: Make generic
 /*
  * 1. Put some images on canteloupe
  * 2. In Person:
  */
+
+/**
+ * Fetches the width and height of an image from the canteloupe server's `info.json` file
+ * for that image asynchronously.
+ *
+ * @param image The image to fetch (e.g. "pantheon.jpg")
+ * @return An object with the `width` and `height` properties
+ * @throws Error
+ */
+async function getWidthAndHeightDataFromServer(image){
+   var req = await request("GET", `https://env-4072537.us.reclaim.cloud/iiif/2/${image}/info.json`, {});
+
+   var responseString = await req;
+   var response = JSON.parse(responseString);
+
+   if(response.width && response.height){
+     return {
+       width: response.width,
+       height: response.height
+     };
+   }else{
+     throw new Error("Could not fetch width and height from server. Double check URLs");
+   }
+}
+
 (function(){
+
   const I3 = require("../build/index");
 
   var decoder = new RDFDecoder(config);
