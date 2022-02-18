@@ -437,7 +437,12 @@ class RDFDecoder {
   }
 }
 
-<<<<<<< HEAD
+// DEMO FUNCTION
+// TODO: Make generic
+/*
+ * 1. Put some images on canteloupe
+ * 2. In Person:
+ */
 /**Calculates finalized points for annotations/completes percentage to pixel format
   //@param anno_link is manifest annotation link
   //@param width of image
@@ -451,16 +456,6 @@ class RDFDecoder {
 
     return textualAnnotation = new I3.ItemTextualAnnotation(anno_link, "commenting", anno_link.title + " " + anno_link.content, "en", target +x+","+y+","+width+","+height);
   }
-=======
->>>>>>> b8947a701e1f28165957fbf2427716c2a435c110
-
-// DEMO FUNCTION
-// TODO: Make generic
-/*
- * 1. Put some images on canteloupe
- * 2. In Person:
- */
-
 /**
  * Fetches the width and height of an image from the canteloupe server's `info.json` file
  * for that image asynchronously.
