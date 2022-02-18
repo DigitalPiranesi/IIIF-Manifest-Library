@@ -437,14 +437,25 @@ class RDFDecoder {
   }
 }
 
-
 // DEMO FUNCTION
 // TODO: Make generic
 /*
  * 1. Put some images on canteloupe
  * 2. In Person:
  */
+/**Calculates finalized points for annotations/completes percentage to pixel format
+  //@param anno_link is manifest annotation link
+  //@param width of image
+  //@param height of image
+  //@param target is target canvas link
+  //@return textualAnnotation
+  */
+  textualAnnotation calculate_annotations(anno_link, width, height, target) {
+    x = parseInt(anno_link.xywh * width);
+    y = parseInt(annoy_link.xywh * height);
 
+    return textualAnnotation = new I3.ItemTextualAnnotation(anno_link, "commenting", anno_link.title + " " + anno_link.content, "en", target +x+","+y+","+width+","+height);
+  }
 /**
  * Fetches the width and height of an image from the canteloupe server's `info.json` file
  * for that image asynchronously.
@@ -504,6 +515,7 @@ async function getWidthAndHeightDataFromServer(image){
   canvas.addAnnotationPage(annopage);
 
   // Fetch annotation
+
   var annotations = [];
   var i = 0;
 
@@ -523,6 +535,8 @@ async function getWidthAndHeightDataFromServer(image){
       annopage.addItem(textualAnnotation);
     }
   }
+
+  
 
   console.log(manifest.toJSONString());
 })();
