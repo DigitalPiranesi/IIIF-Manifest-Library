@@ -368,6 +368,7 @@ class RDFDecoder {
         var target = this.get_target(anno);
 
         var xywh = {
+          // x%,y% format
           x: parseFloat(target.xywh.split(",")[0]) / 100,
           y: parseFloat(target.xywh.split(",")[1]) / 100,
           w: target.xywh.split(",")[2],
@@ -399,6 +400,10 @@ class RDFDecoder {
 
 // DEMO FUNCTION
 // TODO: Make generic
+/*
+ * 1. Put some images on canteloupe
+ * 2. In Person:
+ */
 (function(){
   const I3 = require("../build/index");
 
@@ -433,6 +438,8 @@ class RDFDecoder {
     // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
       // TODO: FIX THIS MESS
+      // TODO: parseInt
+
       var textualAnnotation = new I3.ItemTextualAnnotation("https://piranesi-test.reclaim.hosting/walts-test-book/media/testmanifest/annotation/p000-tag-" + i, "commenting", anno.title + " " + anno.content, "en", "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1#xywh=" + (anno.xywh1.x * 17711) + "," + (anno.xywh1.y * 12932) + "," + (anno.xywh1.w) + "," + (anno.xywh1.h));
 
       console.log(textualAnnotation);
@@ -441,6 +448,4 @@ class RDFDecoder {
   }
 
   console.log(manifest.toJSONString());
-
-
 })();
