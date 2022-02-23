@@ -36,6 +36,7 @@
 const fs = require('fs');
 const config = require('./digital_piranesi_sample_2500.json');
 const XMLHttpRequest = require('xhr2');
+const I3 = require("../build/index");
 
 const IN_EASY_TERMS = {
   ARTSTOR_URL: "http://simile.mit.edu/2003/10/ontologies/artstor#url",
@@ -418,7 +419,7 @@ class RDFDecoder {
           title: annotation_title || "",
           content: annotation_content || "",
           xywh: target.xywh || "",
-          xywh1: xywh,
+          int_xywh: xywh,
           uri: target.uri
         });
       }
@@ -444,11 +445,17 @@ class RDFDecoder {
   //@param target is target canvas link
   //@return textualAnnotation
   */
-function calculate_annotations(anno_link, width, height, target) {
-  x = parseInt(anno_link.xywh * width);
-  y = parseInt(annoy_link.xywh * height);
+function calculate_annotations(annotationObject, width, height, target) {
+  x = parseInt(annotationObject.int_xywh.x * width);
+  y = parseInt(annotationObject.int_xywh.y * height);
 
-  return textualAnnotation = new I3.ItemTextualAnnotation(/* TODO: Generate URL from anno_link */, "commenting", anno_link.title + " " + anno_link.content, "en", target +x+","+y+","+width+","+height);
+  return new I3.ItemTextualAnnotation(
+    "uri",
+    "commenting",
+    `${annotationObject.title} ${annotationObject.content}`,
+    "en",
+    `${target}#xywh=${x},${y},${annotationObject.int_xywh.w},${annotationObject.int_xywh.h}`
+  );
 }
 
 /**
@@ -513,28 +520,35 @@ async function getWidthAndHeightDataFromServer(image){
   var annotations = [];
   var i = 0;
 
+  // for(imageurl in images){
+    for(const anno of arrays.parsed_annotations){
+      i++;
+
+      if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
+        var widthHeight = getWidthAndHeightDataFromServer(image);
+        //var textualAnnotation = calculate_annotations(anno, /* TODO: Fetch */, /* TODO: Fetch */, /* TODO: Pass canvas URL */);
+
+        console.log(textualAnnotation);
+        annopage.addItem(textualAnnotation);
+      }
+    }
+  // }
+  console.log(manifest.toJSONString());
+});
+
+(function(){
+  var decoder = new RDFDecoder(config);
+  var arrays = decoder.decode();
+
+
   for(const anno of arrays.parsed_annotations){
-    i++;
-    // If annotation is what we are looking for using target.uri
-    // {
-    //  uri, base_uri, title, xywh, content
-    // }
     if(anno.uri == "https://scalar.usc.edu/works/piranesidigitalproject/view-of-the-piazza-della-rotonda"){
-      var widthHeight = getWidthAndHeightDataFromServer(image);
+      var annotation = calculate_annotations(anno, 17771, 12932, "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1");
 
-
-      var textualAnnotation = calculate_annotations(anno, /* TODO: Fetch */, /* TODO: Fetch */, /* TODO: Pass canvas URL */);
-
-      console.log(textualAnnotation);
-      annopage.addItem(textualAnnotation);
+      console.log(annotation);
     }
   }
-
-
-
-  console.log(manifest.toJSONString());
 })();
-
 
 /*
  1.
