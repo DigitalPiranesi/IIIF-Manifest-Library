@@ -1,3 +1,13 @@
+/*
+ * This file exists to standardize the import and export of the entire library
+ * via one import. Gulp and Webpack will package and resolve all references
+ * and allow for the import statements to populate the library as needed.
+ *
+ * The build process facilitates package with both NodeJS and Webpack formats
+ * which allows this to be standardized as a single export statement.
+ *
+ * All new library classes and methods ought to be exported here.
+ */
 import Item from "./types/Item";
 import ItemAnnotation from "./types/ItemAnnotation";
 import ItemAnnotationPage from "./types/ItemAnnotationPage";
@@ -30,19 +40,3 @@ export {
   EnumWebAnnotationMotivation,
   EnumManifestBehavior
 };
-
-/*
-context["IIIF"] = {
-  Item: Item,
-  ItemAnnotation: ItemAnnotation,
-  ItemAnnotationPage: ItemAnnotationPage,
-  ItemCanvas: ItemCanvas,
-  ItemTextualAnnotation: ItemTextualAnnotation,
-  ItemWebAnnotation: ItemWebAnnotation,
-  ItemWebAnnotationImage: ItemWebAnnotationImage,
-  Label: Label,
-  Manifest: Manifest,
-  EnumAnnotationMotivation: EnumAnnotationMotivation,
-  EnumWebAnnotationMotivation: EnumWebAnnotationMotivation,
-  EnumManifestBehavior: EnumManifestBehavior
-};*/

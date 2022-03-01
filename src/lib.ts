@@ -58,10 +58,20 @@ function addAll(obj: any, value: any | any[]){
   }
 }
 
+/**
+ * Checks if an object is defined
+ *
+ * @return True if the type of the object is any other than undefined, false otherwise.
+ */
 function isDefined(obj: any){
   return (typeof obj !== "undefined" ? true : false);
 }
 
+/**
+ * Splits the URL from the file extension (e.g. `.txt`, `.json`).
+ *
+ * @return A string of the extension or undefined if no extension is possible.
+ */
 function getURLExtension(url: string): string | undefined{
   var ret = url.split(/[#?]/)[0]!.split('.')!.pop()!.trim();
 
