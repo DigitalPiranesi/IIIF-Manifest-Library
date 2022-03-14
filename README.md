@@ -49,9 +49,13 @@ After building the project, it can be included into an [HTML file](https://githu
 
 All available I3F library classes, methods, constants, and functions documented are available through this object.
 
+### Example
 ```html
 <script src="./I3F.build.js"></script>
 <script>
+
+// The I3F object contains the library in its scope.
 var label = new I3F.Label("en", "Hello, world!");
+
 </script>
 ```
