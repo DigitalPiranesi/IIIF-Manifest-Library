@@ -31,7 +31,7 @@ TODO
 ### Web
 To build the manfiest generator as a web-compatible JavaScript library, use the following commands.
 
-```shell
+```console
 $ npm install     # Installs dependencies for building the project
 $ gulp clean      # Cleans the build environment and removes previously built code.
 $ gulp target-web # Builds the project with the web library as the target.
