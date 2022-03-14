@@ -1,4 +1,4 @@
-/*
+/**
  * This file exists to standardize the import and export of the entire library
  * via one import. Gulp and Webpack will package and resolve all references
  * and allow for the import statements to populate the library as needed.

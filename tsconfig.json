@@ -16,6 +16,7 @@
     "noImplicitAny": true,
     "target": "es5",
     "strictNullChecks": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "sourceMap": true
   }
 }
