@@ -37,8 +37,21 @@ $ gulp clean      # Cleans the build environment and removes previously built co
 $ gulp target-web # Builds the project with the web library as the target.
 ```
 
-The output in the `dist` folder can then be included into any Web project. The file `i3.build.js` can be included into any HTML file.
+The output in the `dist` folder can then be included into any Web project. The file `I3F.build.js` can be included into any HTML file.
 
 # Usage
 
+## NodeJS
+TODO
+
 ## Web
+After building the project, it can be included into an [HTML file](https://github.com/DigitalPiranesiStorage/Manifest-Generator/tree/master/docs/examples/HTML.md) and used by accessing the `I3F` object. This is exported by `webpack` as the container object for the library.
+
+All available I3F library classes, methods, constants, and functions documented are available through this object.
+
+```html
+<script src="./I3F.build.js"></script>
+<script>
+var label = new I3F.Label("en", "Hello, world!");
+</script>
+```
