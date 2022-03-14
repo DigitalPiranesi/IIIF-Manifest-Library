@@ -32,9 +32,9 @@ TODO
 To build the manfiest generator as a web-compatible JavaScript library, use the following commands.
 
 ```shell
-npm install     # Installs dependencies for building the project
-gulp clean      # Cleans the build environment and removes previously built code.
-gulp target-web # Builds the project with the web library as the target.
+$ npm install     # Installs dependencies for building the project
+$ gulp clean      # Cleans the build environment and removes previously built code.
+$ gulp target-web # Builds the project with the web library as the target.
 ```
 
 The output in the `dist` folder can then be included into any Web project. The file `i3.build.js` can be included into any HTML file.
