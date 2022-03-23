@@ -25,6 +25,9 @@ import IItem from "./types/interfaces/IItem";
 import IJSONAble from "./types/interfaces/IJSONAble";
 import ILabel from "./types/interfaces/ILabel";
 
+/**
+ * Default exports for the library.
+ */
 export {
   Item,
   ItemAnnotation,

@@ -8,11 +8,11 @@ import ILabel from "./interfaces/ILabel";
  *
  * @see Map
  * @usage
- * ```
- * var label = new Label();
- * label.addValue('en', ['Hello world!', 'Hi world!']);
- * label.addValue('fr', 'Bonjour, monde!');
- * ```
+ *    ```
+ *    var label = new Label();
+ *    label.addValue('en', ['Hello world!', 'Hi world!']);
+ *    label.addValue('fr', 'Bonjour, monde!');
+ *    ```
  */
 export default class Label{
   languageMap: Map<string, string[]>;
