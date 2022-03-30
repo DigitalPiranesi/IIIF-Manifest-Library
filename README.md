@@ -1,4 +1,4 @@
-# <span id="1" Manifest Generator
+# <span id="1"></span> Manifest Generator
 
 [![Master Branch](https://github.com/DigitalPiranesiStorage/Manifest-Generator/actions/workflows/build-master-using-gulp.yml/badge.svg?branch=master)](https://github.com/DigitalPiranesiStorage/Manifest-Generator/actions/workflows/build-master-using-gulp.yml)
 
