@@ -402,7 +402,6 @@ class RDFDecoder {
         }
 
         var annotation_body_uri = config[anno][IN_EASY_TERMS.HAS_BODY][0].value;
-
         var annotation_title = this.get_title(annotation_body_uri);
         var annotation_content = this.get_content(annotation_body_uri);
         var target = this.get_target(anno);
@@ -486,9 +485,40 @@ async function getWidthAndHeightDataFromServer(image){
   var decoder = new RDFDecoder(config);
   var arrays = decoder.decode();
 
-  for(const anno of arrays.parsed_annotations){
+  // Each element in `media_pages` is a URL to a Scalar page for the photo we are
+  // generating a manifest for.
+  for(const url of arrays.media_pages){
+    // TODO: Look into whether this has to be the actual URL of the manifest
+    var manifestID = url + ".json";
+    var canvasID   = url + "/canvas/p1";
+    var webAnnotationPageID = url + "/page/p1/1";
+    var annotationPageID = url + "/page/p2/1";
+    var webAnnotationImageID = url + "/annotation/p1-image";
+    var imageURL = "";
+    var imageWidth = 0;
+    var imageHeight = 0;
+
+    var manifest = new I3.Manifest(3, manifestID);
+    var canvas = new I3.ItemCanvas(canvasID, imageWidth, imageHeight);
+    var webAnnotationPage = new I3.ItemWebAnnotationPage(webAnnotationPageID);
+    var annotationPage = new I3.ItemAnnotationPage(annotationPageID);
+    var image = new I3.ItemWebAnnotationImage(webAnnotationImageID, "painting", canvas, imageURL, imageWidth, imageHeight);
+        image.addContext("http://iiif.io/api/presentation/3/context.json");
+
+
+    // Find all annotations for this page.
+    for(const annotation of arrays.parsed_annotations){
+      // If this condition is true, then the annotation belongs to this page.
+      if(annotation.uri == url){
+        // TODO: Add annotation to textual annotations
+      }
+    }
+    // TODO: Write to file: url.json
+  }
+
+/*  for(const anno of arrays.parsed_annotations){
     var annotation = calculate_annotations(anno, 17771, 12932, "http://piranesi-test.reclaim.hosting/mirador/media/pantheon/canvas/p1");
 
     console.log(annotation);
-  }
+  }*/
 })();
