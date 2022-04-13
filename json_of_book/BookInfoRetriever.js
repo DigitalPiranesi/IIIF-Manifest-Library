@@ -437,13 +437,14 @@ class RDFDecoder {
   }
 }
 
-/**Calculates finalized points for annotations/completes percentage to pixel format
-  //@param anno_link is manifest annotation link
-  //@param width of image
-  //@param height of image
-  //@param target is target canvas link
-  //@return textualAnnotation
-  */
+/**
+ * Calculates finalized points for annotations/completes percentage to pixel format
+ * @param anno_link is manifest annotation link
+ * @param width of image
+ * @param height of image
+ * @param target is target canvas link
+ * @return textualAnnotation
+ */
 function calculate_annotations(annotationObject, width, height, target) {
   x = parseInt(annotationObject.int_xywh.x * width);
   y = parseInt(annotationObject.int_xywh.y * height);
@@ -504,7 +505,6 @@ async function getWidthAndHeightDataFromServer(image){
     var annotationPage = new I3.ItemAnnotationPage(annotationPageID);
     var image = new I3.ItemWebAnnotationImage(webAnnotationImageID, "painting", canvas, imageURL, imageWidth, imageHeight);
         image.addContext("http://iiif.io/api/presentation/3/context.json");
-
 
     // Find all annotations for this page.
     for(const annotation of arrays.parsed_annotations){
