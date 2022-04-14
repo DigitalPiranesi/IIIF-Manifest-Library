@@ -41,6 +41,15 @@ export default class ItemCanvas extends Item {
   }
 
   /**
+   * Adds a W3 annotation page to the canvas.
+   *
+   * @param page The page to add.
+   */
+  addWebAnnotationPage(page: ItemWebAnnotationPage){
+    this.items.push(page);
+  }
+
+  /**
    * Get all of the W3 annotation pages attached to this canvas.
    *
    * @returns An array of `ItemWebAnnotationPage`

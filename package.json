@@ -8,7 +8,7 @@
     "start:gulp": "npm-run-all gulp start",
     "gulp": "gulp",
     "start": "node ./dist/main.js",
-    "test": "mocha --reporter list"
+    "test": "echo 'Someone should add tests.'"
   },
   "repository": {
     "type": "git",
