@@ -1,4 +1,61 @@
 # Usage
+## Building from Source
+### Installing Dependencies
+#### NodeJS, NPM
+Both NodeJS and the Node Package Manager must be installed in order to install/use the library. NodeJS can be downloaded [here](https://nodejs.org/en/download/) and ships with NPM.
+
+#### Project Dependencies
+If building from source, dependencies are managed by the Node Package Manager. Simply type the following command to download and install all dependencies.
+
+```shell
+$ npm install
+```
+
+### Targeting an Environment
+#### NodeJS
+The library can be built and targeted for NodeJS environments where operations
+such as file I/O, asynchronyous http-requests, and document manipulation is
+patched for the environment. NodeJS environments are required to provide some
+additional dependencies.
+
+The NodeJS target is recommended for those who wish to incorporate the IIIF
+Manifest API functionality into an existing NodeJS project. While a command
+line functionality can be implemented, the web-distribution may offer similar,
+and easier to use, interface.
+
+```shell
+# To build for NodeJS, run this in the project directory:
+$ npm install
+$ gulp target-node
+```
+
+This will produce a single JavaScript file in the `dist/` folder which can then
+be included.
+
+#### TypeScript Projects
+The library was written in TypeScript to promote strict-typing and eliminate
+class/inheritance based exceptions. The library can easily be integrated into
+existing TypeScript projects with includes.
+
+There is no additional build-pipeline for the TypeScript library.
+
+#### Web
+When designing the library, the main focus was usability on the web. This
+principle was based on the goal of integrating the IIIF Presentation API
+into a JavaScript project without the manual authoring of Manifests typically
+required.
+
+```shell
+$ npm install
+$ gulp target-web
+```
+
+## Exposure
+For NodeJS and web environments, the library is exposed via the `I3` object.
+All classes, functions, and fields are accessible via this object. When the
+`I3` object is used in the examples below, TypeScript environments can disregard
+this usage and access classes directly.
+
 ## Manifest Lifecycle
 ### 1) Initialization
 The manifest lifecycle begins with the creation of a manifest object, with

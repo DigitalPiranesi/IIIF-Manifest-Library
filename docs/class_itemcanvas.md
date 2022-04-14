@@ -30,9 +30,7 @@ Adds an annotation page to the canvas. Note that these are IIIF Presentation Ann
 **Param `page`:** The page of annotations to add to the canvas.
 
 #### `getWebAnnotationPages()`
-
 **Return:** The W3 Web Annotation Pages attached to this canvas
 
 #### `getAnnotationPages()`
-
-**Return:**
+**Return:** The annotation pages attaches to this canvas.

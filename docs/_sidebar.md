@@ -1,12 +1,11 @@
 * [Introduction](/)
-* [Targets](/targets)
 * [Usage](/usage)
 * [Class: Item](/class_item)
 * [Class: ItemAnnotation](/class_itemannotation)
 * [Class: ItemAnnotationPage](/class_itemannotationpage)
 * [Class: ItemCanvas](/class_itemcanvas)
 * [Class: ItemTextualAnnotation](/class_itemtextualannotation)
-* [Class: ItemWebAnnotation](/class_itemwebannotation)
+<!--* [Class: ItemWebAnnotation](/class_itemwebannotation)
 * [Class: ItemWebAnnotationImage](/class_itemwebannotationimage)
 * [Class: ItemWebAnnotationPage](/class_itemwebannotationpage)
 * [Class: Label](/class_label)
@@ -18,3 +17,4 @@
 * [Interface: IItem](/interface_iitem)
 * [Interface: IJSONAble](/interface_ijsonable)
 * [Interface: ILabel](/interface_ilabel)
+-->
