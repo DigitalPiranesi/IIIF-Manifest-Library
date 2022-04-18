@@ -34,7 +34,7 @@
  * var parsed_annotations = arrays.parsed_annotations;
  */
 const fs = require('fs');
-const config = require('./digital_piranesi_sample_2500.json');
+const config = require('./DOWNLOADED_DATA.json');
 const XMLHttpRequest = require('xhr2');
 const I3 = require("../build/index");
 
@@ -191,6 +191,11 @@ class RDFDecoder {
     var array_of_strings = raw_string.split("#");
     var base_uri = array_of_strings[0];
     var uri = base_uri.substring(0, base_uri.length - 2);
+
+    if(typeof array_of_strings[1] === "undefined"){
+      return -1;
+    }
+
     var xywh = array_of_strings[1].split("=")[1];
 
     return {
@@ -489,13 +494,17 @@ async function getWidthAndHeightDataFromServer(image){
   // Each element in `media_pages` is a URL to a Scalar page for the photo we are
   // generating a manifest for.
   for(const url of arrays.media_pages){
+    if(!url.includes("scalar.usc.edu/works/piranesidigitalproject/media/vol15_page97")){
+      continue;
+    }
+
     // TODO: Look into whether this has to be the actual URL of the manifest
     var manifestID = url + ".json";
     var canvasID   = url + "/canvas/p1";
     var webAnnotationPageID = url + "/page/p1/1";
     var annotationPageID = url + "/page/p2/1";
     var webAnnotationImageID = url + "/annotation/p1-image";
-    var imageURL = "";
+    var imageURL = "test.jpg"; //imagesArray[url]; // TODO: Create images array
     var imageWidth = 0;
     var imageHeight = 0;
 
@@ -506,13 +515,25 @@ async function getWidthAndHeightDataFromServer(image){
     var image = new I3.ItemWebAnnotationImage(webAnnotationImageID, "painting", canvas, imageURL, imageWidth, imageHeight);
         image.addContext("http://iiif.io/api/presentation/3/context.json");
 
+    webAnnotationPage.addItem(image);
+    canvas.addItem(webAnnotationPage);
+    manifest.addItem(canvas);
+
+    var i = 0;
+
     // Find all annotations for this page.
     for(const annotation of arrays.parsed_annotations){
       // If this condition is true, then the annotation belongs to this page.
       if(annotation.uri == url){
+        i++;
         // TODO: Add annotation to textual annotations
+        var textAnnotation = new I3.ItemTextualAnnotation(url + "/annotation/t" + i, "painting", annotation.title + " " + annotation.content, "en", annotation.uri);
+        annotationPage.addItem(textAnnotation);
       }
     }
+
+    canvas.addAnnotationPage(annotationPage);
+    console.log(manifest.toJSONString());
     // TODO: Write to file: url.json
   }
 
