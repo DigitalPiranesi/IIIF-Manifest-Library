@@ -1,10 +1,6 @@
-# <span id="1"></span> Manifest Generator
+# <span id="1"></span> IIIF Manifest Library
 
-[![Master Branch](https://github.com/DigitalPiranesiStorage/Manifest-Generator/actions/workflows/build-master-using-gulp.yml/badge.svg?branch=master)](https://github.com/DigitalPiranesiStorage/Manifest-Generator/actions/workflows/build-master-using-gulp.yml)
-
-The Manifest Generator is a utility for generating IIIIF Presentation API
-v3-compliant JSON manifests. These can be generated from existing RDF JSON-LD,
-created in the command line, or created programatically.
+[![Master Branch](https://github.com/DigitalPiranesiStorage/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml/badge.svg?branch=master)](https://github.com/DigitalPiranesiStorage/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml)
 
 The library was created to address the problem of translating from Scalar's RDF
 JSON-LD format for use in IIIF Presentation API-compliant viewers such as
@@ -13,7 +9,7 @@ Mirador and Seadragon.
 This software aims to be an easy-to-use library and command line tool that
 can be used in both web applications and as a utility.
 
-# [Documentation](https://digitalpiranesistorage.github.io/Manifest-Generator/)
+# [Documentation](https://digitalpiranesistorage.github.io/IIIF-Manifest-Library/)
 
 # <span id="3"></span> Building
 
@@ -31,7 +27,7 @@ When building the manifest generator, there are various ways to build it. This i
 TODO
 
 ### Web
-To build the manfiest generator as a web-compatible JavaScript library, use the following commands.
+To build the library as a web-compatible JavaScript library, use the following commands.
 
 ```bash
 $ npm install     # Installs dependencies for building the project
@@ -47,7 +43,7 @@ The output in the `dist` folder can then be included into any Web project. The f
 TODO
 
 ## Web
-After building the project, it can be included into an [HTML file](https://github.com/DigitalPiranesiStorage/Manifest-Generator/tree/master/docs/examples/HTML.md) and used by accessing the `I3F` object. This is exported by `webpack` as the container object for the library.
+After building the project, it can be included into an [HTML file](https://github.com/DigitalPiranesiStorage/IIIF-Manifest-Library/tree/master/docs/examples/HTML.md) and used by accessing the `I3F` object. This is exported by `webpack` as the container object for the library.
 
 All available I3F library classes, methods, constants, and functions documented are available through this object.
 
