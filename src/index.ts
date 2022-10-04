@@ -28,7 +28,7 @@ import ILabel from "./types/interfaces/ILabel";
 /**
  * Default exports for the library.
  */
-export {
+export default {
   Item,
   ItemAnnotation,
   ItemAnnotationPage,
