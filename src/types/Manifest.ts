@@ -1,4 +1,4 @@
-var lib = require("../lib");
+const lib = require("../lib");
 
 import Label from "./Label";
 import IJSONAble from "./interfaces/IJSONAble";
@@ -46,7 +46,7 @@ export default class Manifest implements IJSONAble {
    */
   removeLabel(): Label | null {
     if(this.label !== undefined){
-      var previous = this.label;
+      const previous = this.label;
       this.label = null;
 
       return previous;
@@ -125,9 +125,9 @@ export default class Manifest implements IJSONAble {
   toJSONString(): string{
     // Softcloning helps to preserve references but copy properties.
     // i.e. all functions stay intact.
-    var obj = lib.softClone(this);
-    var labelString: { [s: string]: any } = {"label": obj.label.getObject()};
-    var itemString: { [s: string]: any } = {"items": this.items};
+    let obj = lib.softClone(this);
+    const labelString: { [s: string]: any } = {"label": obj.label.getObject()};
+    const itemString: { [s: string]: any } = {"items": this.items};
 
     // Overrides the label object with a label string.
     // Makes it look really nice for the JSON and gets rid
