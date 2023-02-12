@@ -1,6 +1,6 @@
 # <span id="1"></span> IIIF Manifest Library
 
-[![Master Branch](https://github.com/DigitalPiranesi/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml/badge.svg?branch=master)](https://github.com/DigitalPiranesi/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml)
+[![Master Branch](https://github.com/DigitalPiranesi/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml/badge.svg?branch=master)](https://github.com/DigitalPiranesi/IIIF-Manifest-Library/actions/workflows/build-master-using-gulp.yml) [![CLA assistant](https://cla-assistant.io/readme/badge/DigitalPiranesi/IIIF-Manifest-Library)](https://cla-assistant.io/DigitalPiranesi/IIIF-Manifest-Library)
 
 The library was created to address the problem of translating from Scalar's RDF
 JSON-LD format for use in IIIF Presentation API-compliant viewers such as
