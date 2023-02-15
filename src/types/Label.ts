@@ -55,7 +55,7 @@ export default class Label{
    * @return
    */
   addValue(languageCode: string, value: string | string[]): string[]{
-    var _array = this.languageMap.get(languageCode);
+    let _array = this.languageMap.get(languageCode);
 
     if(_array !== undefined){
       lib.addAll(_array, value);
@@ -95,11 +95,11 @@ export default class Label{
    * @return An array of `{"--": [ ] }` objects where "--" is the two character language code.
    */
   getObject(): {[s: string]: string[] } {
-    var array_of_values: any = {};
+    const array_of_values: any = {};
 
     for(const key of this.languageMap.keys()){
-      var element: string[] = this.languageMap.get(key) || [];
-      var key1: any = key;
+      const element: string[] = this.languageMap.get(key) || [];
+      const key1: any = key;
 
       if(element.length === undefined && element.length <= 0){
         continue;
