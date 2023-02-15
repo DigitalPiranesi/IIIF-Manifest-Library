@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var lib = require("../lib");
+const lib = require("../lib");
 import ItemWebAnnotation from "./ItemWebAnnotation";
 import EnumWebAnnotationMotivation from "./enums/EnumWebAnnotationMotivation";
 import ItemCanvas from "./ItemCanvas";

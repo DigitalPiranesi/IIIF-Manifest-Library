@@ -24,13 +24,14 @@ describe("ItemCanvas", () => {
             })
         })
     })
-    describe("add amd get items", () => {
+    describe("add and get items", () => {
         context("when an WebAnnotationsPage is added", () => {
             it("should be part of the items array", () => {
                 const test = new ItemCanvas("testcanvas", 100, 100);
                 const testpage = new ItemWebAnnotationPage("testpage");
                 test.addWebAnnotationPage(testpage)
                 expect(test.getWebAnnotationPages()[0].id).to.equal("testpage");
+                expect(test.getWebAnnotationPages()[0].toJSONString()).to.equal("{\"id\":\"testpage\",\"items\":[],\"type\":\"AnnotationPage\"}");
             })
         })
     })
