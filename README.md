@@ -26,7 +26,6 @@ npm install
 When building the manifest generator, there are various ways to build it. This includes building a web-compatible JavaScript library, a NodeJS package, and a command-line utility. By building the project with various flags, you can target those environments and exclude all other source that is unnecessary.
 
 ### NodeJS
-TODO
 
 ### Web
 To build the library as a web-compatible JavaScript library, use the following commands.
@@ -42,7 +41,15 @@ The output in the `dist` folder can then be included into any Web project. The f
 # Usage
 
 ## NodeJS
-TODO
+Install the library into your project by running:
+```sh
+$ npm install @digital-piranesi/iiif-manifest-generator
+```
+
+Then, include the library in any NodeJS script as:
+```js
+const I3 = require('@digital-piranesi/iiif-manifest-generator').default;
+```
 
 ## Web
 After building the project, it can be included into an [HTML file](https://github.com/DigitalPiranesiStorage/IIIF-Manifest-Library/tree/master/docs/examples/HTML.md) and used by accessing the `I3F` object. This is exported by `webpack` as the container object for the library.

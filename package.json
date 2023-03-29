@@ -1,7 +1,7 @@
 {
-  "name": "@digital-piranesi/iiif-manifest-generator",
+  "name": "@digital-piranesi/iiif-manifest-library",
   "version": "1.0.1",
-  "description": "A Javascript/HTML IIIF-compiant manifest generator.",
+  "description": "A Javascript/HTML IIIF-compiant manifest library",
   "main": "build/index.js",
   "scripts": {
     "build": "gulp",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DigitalPiranesiStorage/Manifest-Generator.git"
+    "url": "git+https://github.com/DigitalPiranesi/IIIF-Manifest-Library"
   },
   "author": "Walter Pach (wpach@email.sc.edu)",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/DigitalPiranesiStorage/Manifest-Generator/issues"
+    "url": "https://github.com/DigitalPiranesi/IIIF-Manifest-Library/issues"
   },
-  "homepage": "https://github.com/DigitalPiranesiStorage/Manifest-Generator#readme",
+  "homepage": "https://github.com/DigitalPiranesi/IIIF-Manifest-Library#readme",
   "devDependencies": {
     "@types/node": "^16.11.4",
     "browserify": "^17.0.0",
