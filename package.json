@@ -1,6 +1,6 @@
 {
   "name": "@digital-piranesi/iiif-manifest-library",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A Javascript/HTML IIIF-compiant manifest library",
   "main": "build/index.js",
   "scripts": {

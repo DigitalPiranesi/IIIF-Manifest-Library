@@ -16,18 +16,20 @@ Released under the Apache License found in [LICENSE](./LICENSE)
 # <span id="3"></span> Building
 
 ## Installing Dependencies
-[NodeJS and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) must be installed on the system in order to use the package manager and automated dependency management.
+[NodeJS and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 
+must be installed on the system in order to use the package manager and automated dependency management.
 
 ```bash
 npm install
 ```
 
 ## Usage & Targets
-When building the manifest generator, there are various ways to build it. This includes building a web-compatible JavaScript library, a NodeJS package, and a command-line utility. By building the project with various flags, you can target those environments and exclude all other source that is unnecessary.
+When building the manifest generator, there are various ways to build it. This
+includes building a web-compatible JavaScript library, a NodeJS package, and a
+command-line utility. By building the project with various flags, you can 
+target those environments and exclude all other source that is unnecessary.
 
-### NodeJS
-
-### Web
+### NodeJS & Web
 To build the library as a web-compatible JavaScript library, use the following commands.
 
 ```bash
@@ -36,8 +38,11 @@ $ gulp clean      # Cleans the build environment and removes previously built co
 $ gulp target-web # Builds the project with the web library as the target.
 ```
 
-The output in the `dist` folder can then be included into any Web project. The file `I3F.build.js` can be included into any HTML file.
+The output in the `dist` folder can then be included into any Web project. The
+file `I3F.build.js` can be included into any HTML file.
 
+The `build` folder will contain the NodeJS package, with `index.js` containing
+the export. Include `require('path/index.js').default` to include the project.
 # Usage
 
 ## NodeJS
@@ -54,7 +59,8 @@ const I3 = require('@digital-piranesi/iiif-manifest-library').default;
 ## Web
 After building the project, it can be included into an [HTML file](https://github.com/DigitalPiranesiStorage/IIIF-Manifest-Library/tree/master/docs/examples/HTML.md) and used by accessing the `I3F` object. This is exported by `webpack` as the container object for the library.
 
-All available I3F library classes, methods, constants, and functions documented are available through this object.
+All available I3F library classes, methods, constants, and functions 
+documented are available through this object.
 
 ### Example
 ```html
