@@ -43,12 +43,12 @@ The output in the `dist` folder can then be included into any Web project. The f
 ## NodeJS
 Install the library into your project by running:
 ```sh
-$ npm install @digital-piranesi/iiif-manifest-generator
+$ npm install @digital-piranesi/iiif-manifest-library
 ```
 
 Then, include the library in any NodeJS script as:
 ```js
-const I3 = require('@digital-piranesi/iiif-manifest-generator').default;
+const I3 = require('@digital-piranesi/iiif-manifest-library').default;
 ```
 
 ## Web
