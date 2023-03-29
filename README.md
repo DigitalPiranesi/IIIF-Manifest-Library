@@ -11,7 +11,7 @@ can be used in both web applications and as a utility.
 
 Released under the Apache License found in [LICENSE](./LICENSE)
 
-# [Documentation](https://digitalpiranesistorage.github.io/IIIF-Manifest-Library/)
+# [Documentation](https://digitalpiranesi.github.io/IIIF-Manifest-Library/)
 
 # <span id="3"></span> Building
 
